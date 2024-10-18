@@ -1,6 +1,7 @@
 import csv
 import networkx as nx
 import matplotlib.pyplot as plt
+
 # Step 1: Read the CSV file
 # filename = 'example_topology.csv'
 filename = 'modified_topology.csv'
