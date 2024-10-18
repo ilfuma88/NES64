@@ -59,7 +59,7 @@ class Node:
             print(f"  - Queue ID: {queue.queue_id}")
 
 # Step 1: Read the CSV file
-filename = 'modified_topology.csv'
+filename = 'csvs/modified_topology.csv'
 
 nodes = set()
 edges = []

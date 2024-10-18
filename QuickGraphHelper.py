@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import Node 
 # Step 1: Read the CSV file
 # filename = 'example_topology.csv'
-filename = 'modified_topology.csv'
+filename = 'csvs/modified_topology.csv'
 
 nodes = set()
 edges = []
@@ -33,3 +33,6 @@ mario.print()
 pos = nx.spring_layout(G, k=5)  # Increase k to make nodes more distant
 nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=10, font_weight='bold')
 plt.show()
+
+shortest_paths = dict(nx.shortest_path(G))
+print(shortest_paths)
