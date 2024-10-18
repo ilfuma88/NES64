@@ -1,7 +1,6 @@
 import csv
 import networkx as nx
 import matplotlib.pyplot as plt
-import Node 
 # Step 1: Read the CSV file
 # filename = 'example_topology.csv'
 filename = 'modified_topology.csv'
@@ -27,8 +26,6 @@ G = nx.Graph()
 G.add_nodes_from(nodes)
 G.add_edges_from(edges)
 
-mario = Node.Node("Mario", "Plumber")
-mario.print()
 # Step 5: Visualize the graph
 pos = nx.spring_layout(G, k=5)  # Increase k to make nodes more distant
 nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=10, font_weight='bold')
