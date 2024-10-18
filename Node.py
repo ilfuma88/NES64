@@ -36,15 +36,6 @@ class Node:
         """
         self.streams.append(stream)
 
-    def add_ready_queue(self, ready_queue):
-        """
-        Adds a ReadyQueue object to the node's ready queues array.
-        
-        Args:
-            ready_queue (ReadyQueue): The ReadyQueue object to add.
-        """
-        self.ready_queues.append(ready_queue)
-
     def print(self):
         """
         Prints the details of the node, including its streams and ready queues.
