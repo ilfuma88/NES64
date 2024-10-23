@@ -41,6 +41,14 @@ class Node:
         self.streams = []
         self.ready_queues = []
         
+    def add_stream(self, stream):
+        """
+        Adds a Stream object to the streams list.
+        
+        Args:
+            stream (Stream): The Stream object to be added.
+        """
+        self.streams.append(stream)
 
     def print(self):
         """
