@@ -148,7 +148,7 @@ StreamName,MaxE2E(us),Deadline(us),Path
 | StreamName   | Identifier of the stream.                                                                   |
 | MaxE2E       | Worst-case end-to-end delay (WCD) of the stream in the time unit specified in the .ini file.|
 | Deadline     | Deadline of the stream in the specified time unit.                                          |
-| Path         | The path taken by the stream, represented as a sequence of device names separated by `->`.  |
+| Path         | The path taken by the stream, represented as a sequence of device_name:link:port separated by `->`.  |
 
 **Notes:**
 
@@ -160,7 +160,7 @@ StreamName,MaxE2E(us),Deadline(us),Path
 
 ```csv
 StreamName,MaxE2E(us),Deadline(us),Path
-Stream_A,250.0,2000000,Node_A->Switch_1->Switch_2->Node_B
-Stream_B,400.0,1000000,Node_C->Switch_3->Node_D
+Stream_A, 38.529, 12049, Node_A:Link_3:0->SW_1:Link_1:0->SW_3:Link_6:0->SW_6:Link_21:0->Node_B
+Stream_B, 96.856, 13396, Node_C:Link_20:2->SW_4:Link_17:2->SW_6:Link_6:2->SW_3:Link_9:2->Node_C
 ```
 
