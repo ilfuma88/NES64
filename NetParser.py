@@ -16,7 +16,7 @@ Usage:
 import csv
 
 # Step 1: Read the CSV file
-input_filename = 'example_topology.csv'
+input_filename = 'csvs/example_topology.csv'
 output_filename = 'modified_topology.csv'
 
 modified_rows = []
