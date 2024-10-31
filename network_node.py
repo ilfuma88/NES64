@@ -5,7 +5,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 from ready_queue import ReadyQueue
-from network_stram import NetworkStream
+from network_stream import NetworkStream
 from shaped_queue import ShapedQueue 
 
 
@@ -24,7 +24,7 @@ class NetworkNode:
     
     name: str
     type: str
-    streams: List[NetworkStream]
+    streams_previous: List[NetworkStream]
     ready_queues: List[List[ShapedQueue]]
 
     
@@ -41,7 +41,7 @@ class NetworkNode:
     Attributes:
         name (str): The name of the node.
         type (str): The type of the node ('SW' for switch, 'ES' for end system).
-        streams (list): A list of streams associated with the node.
+        streams_previous (list): A list of streams associated with the node.
         n_input_ports (int): The number of input ports.
         ready_queues (list): Ready queues for the node (optional) probably not used.
         queues_matrix (list of lists): A matrix representing shaped queues. 
@@ -49,7 +49,7 @@ class NetworkNode:
     """
         self.name = name
         self.type = node_type
-        self.streams = []
+        self.streams_previous = []
         self.n_input_ports = n_input_ports
         self.ready_queues = [] ##this is probably not needded as we use a matrix for the sahped queues that has alrady the info about the ready queues
         self.queues_matrix = self.queues_matrix = [[[] for _ in range(n_input_ports)] for _ in range(8)] 
@@ -61,7 +61,7 @@ class NetworkNode:
         Args:
             stream (Stream): The Stream object to be added.
         """
-        self.streams.append(stream)
+        self.streams_previous.append(stream)
 
     def print(self):
         """
@@ -70,7 +70,7 @@ class NetworkNode:
         print(f"Node Name: {self.name}")
         print(f"Node Type: {self.type}")
         print("Streams:")
-        for stream in self.streams:
+        for stream in self.streams_previous:
             print(f"  - Stream ID: {stream.stream_id}")
         print("Ready Queues:")
         for queue in self.ready_queues:

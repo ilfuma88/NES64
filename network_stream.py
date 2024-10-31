@@ -10,3 +10,4 @@ class NetworkStream:
         self.rate = size/period
         self.priority = priority
         
+        

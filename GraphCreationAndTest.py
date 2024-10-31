@@ -1,13 +1,14 @@
 import csv
 import networkx as nx
 import matplotlib.pyplot as plt
-import network_stram
+import network_node
+from network_stream import NetworkStream
 from network_node import NetworkNode
 # Step 1: Read the CSV file
 # filename = 'csvs/example_topology.csv'
 # filename = 'csvs/smaller_topology.csv'
 filename = 'csvs/modified_topology.csv'
-streams_file = 'csvs/example_streams.csv'
+streams_file = 'csvs/modified_streams.csv'
 
 nodes = set()
 edges = []
@@ -43,25 +44,32 @@ for edge in edges:
 # Step 5: Visualize the graph
 pos = nx.spring_layout(G, k=5)  # Increase k to make nodes more distant
 nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=10, font_weight='bold')
-plt.show()
+# plt.show()
 
-###print all the nodes in the graph and all of their attributes
+###print all the nodes in the graph and all of their attributes kinda
 for node in G.nodes(data=True):
     print(node)
     print(node[1]['node_object'].name + " " + node[1]['node_object'].type)
 
-##fiding the shortest path between start and end of teh stream
-# with open(streams_file, 'r') as csvfile:
-#     csvreader = csv.reader(csvfile)
+#fiding the shortest path between start and end of teh stream
+with open(streams_file, 'r') as csvfile:
+    csvreader = csv.reader(csvfile)
     
-#     # Step 2: Parse the CSV data
-#     for row in csvreader:
-#         source = row[3]
-#         dest   = row[4]
-#         stream_id = row[1]
-#         path = nx.shortest_path(G,source=source,target=dest)
-#         # using node_id as the key to the dictionary, add the streams that pass from this node to the node object's stream list
-#         for node_id in path:
-#             network_nodeS[node_id].add_stream(network_stram.NetworkStream(row[1],row[2],source,dest,int(row[5]),int(row[6]),int(row[7]),row[0]))
+    # Step 2: Parse the CSV data
+    for row in csvreader:
+        source = row[3]
+        dest   = row[4]
+        stream_id = row[1]
+        path = nx.shortest_path(G,source=source,target=dest)
+        # ## print the path
+        # print(path)
+        stream_paths[stream_id] = path
+        
+        # using node_id as the key to the dictionary, add the streams that pass from this node to the node object's stream list
+        previous = None
+        for node_id in path:
+            mario = (NetworkStream(stream_id,row[2],source,dest,int(row[5]),int(row[6]),int(row[7]),row[0]), previous)
+            network_nodeS[node_id].add_stream(mario)
+            previous = network_nodeS[node_id]
             
 
