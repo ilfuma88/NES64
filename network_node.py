@@ -17,16 +17,11 @@ class NetworkNode:
         name (str): The name of the node.
         type (str): The type of the node (e.g., SW, ES).
         streams (list of Stream): An array of Stream objects associated with the node.
-        ready_queues (list of ReadyQueue): An array of ReadyQueue objects associated with the node.
-                                            Its a double nested array, where the outer array represents the ports,
-                                            and the inner array represents the ready queue for the port.
     """
     
     name: str
     type: str
-    streams_previous: List[NetworkStream]
-    ready_queues: List[List[ShapedQueue]]
-
+    streams: List[NetworkStream]
     
     
     def __init__(self, name: str, node_type: str, n_input_ports: int):
@@ -41,7 +36,7 @@ class NetworkNode:
     Attributes:
         name (str): The name of the node.
         type (str): The type of the node ('SW' for switch, 'ES' for end system).
-        streams_previous (list): A list of streams associated with the node.
+        streams (list): A list of streams associated with the node.
         n_input_ports (int): The number of input ports.
         ready_queues (list): Ready queues for the node (optional) probably not used.
         queues_matrix (list of lists): A matrix representing shaped queues. 
@@ -49,10 +44,9 @@ class NetworkNode:
     """
         self.name = name
         self.type = node_type
-        self.streams_previous = []
+        self.streams = []
         self.n_input_ports = n_input_ports
-        self.ready_queues = [] ##this is probably not needded as we use a matrix for the sahped queues that has alrady the info about the ready queues
-        self.queues_matrix = self.queues_matrix = [[[] for _ in range(n_input_ports)] for _ in range(8)] 
+        self.queues_matrix = [[[] for _ in range(n_input_ports)] for _ in range(8)] 
         
     def add_stream(self, stream):
         """
@@ -61,7 +55,22 @@ class NetworkNode:
         Args:
             stream (Stream): The Stream object to be added.
         """
-        self.streams_previous.append(stream)
+        self.streams.append(stream)
+
+    def get_stream(self, stream_id):
+        """
+        Returns the stream with the given stream ID.
+        
+        Args:
+            stream_id (str): The ID of the stream to be returned.
+        
+        Returns:
+            Stream: The Stream object with the given stream ID.
+        """
+        for stream in self.streams:
+            if stream.stream_id == stream_id:
+                return stream
+        return None
 
     def print(self):
         """
@@ -70,7 +79,7 @@ class NetworkNode:
         print(f"Node Name: {self.name}")
         print(f"Node Type: {self.type}")
         print("Streams:")
-        for stream in self.streams_previous:
+        for stream in self.streams:
             print(f"  - Stream ID: {stream.stream_id}")
         print("Ready Queues:")
         for queue in self.ready_queues:
