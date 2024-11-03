@@ -68,8 +68,8 @@ with open(streams_file, 'r') as csvfile:
         # using node_id as the key to the dictionary, add the streams that pass from this node to the node object's stream list
         previous = None
         for node_id in path:
-            mario = (NetworkStream(stream_id,row[2],source,dest,int(row[5]),int(row[6]),int(row[7]),row[0]), previous)
-            network_nodeS[node_id].add_stream(mario)
+            stream = (NetworkStream(stream_id,row[2],source,dest,int(row[5]),int(row[6]),int(row[7]),row[0]), previous)
+            network_nodeS[node_id].add_stream(stream)
             previous = network_nodeS[node_id]
             
 
