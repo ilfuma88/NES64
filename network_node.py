@@ -57,6 +57,26 @@ class NetworkNode:
         """
         self.streams.append(stream)
 
+    def print_shaped_queues(self):
+        """
+        Prints the details of the shaped queues associated with the node.
+        """
+        for i in range(8):
+            for j in range(self.n_input_ports):
+                if( len(self.queues_matrix[i][j]) > 0):
+                    print(f"Queue at priority {i} and port_index {j}:")
+                    for stream in self.queues_matrix[i][j]:
+                        if( stream.stream_id != ""):
+                            print(f"  - Stream ID: {stream.stream_id} Stream InPort : {stream.ingress_port}")
+
+
+    def print_streams(self):
+        """
+        Prints the details of the streams associated with the node.
+        """
+        for stream in self.streams:
+            print(stream[0])
+
     def get_stream(self, stream_id):
         """
         Returns the stream with the given stream ID.

@@ -1,6 +1,7 @@
 import csv
 import networkx as nx
 import matplotlib.pyplot as plt
+
 import network_node
 from network_stream import NetworkStream
 from network_node import NetworkNode
@@ -28,6 +29,8 @@ with open(topology_file, 'r') as csvfile:
             links[row[1]] = [row[2], row[3], row[4], row[5], row[6]]
             edges.append((row[2], row[4]))
 
+
+# print(links)
 # Step 3: Create the graph
 G = nx.Graph()
 
@@ -50,6 +53,32 @@ nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size
 #     print(node)
 #     print(node[1]['node_object'].name + " " + node[1]['node_object'].type)
 
+
+def get_ports(node,link):
+    if(link[1][0] == node[0]):
+        return (int(link[1][1]),int(link[1][3]))
+    return (int(link[1][3]),int(link[1][1]))
+
+
+
+def assign_stream_to_queue(node,link,stream):
+        inbound_port,outbound_port = get_ports(node,link)
+        stream.ingress_port = inbound_port
+        # print(inbound_port)
+        # print(link)
+        # print(node[1].name)
+        #node[1].queues_matrix[stream.priority][inbound_port-1].append(stream)
+        for q in node[1].queues_matrix[stream.priority]:
+            if (q == []):
+                q.append(stream)
+                break
+            else:
+                for s in q:
+                    if(s[0].ingress_port == inbound_port):
+                        q.append(stream)
+                        break
+        
+ 
 #fiding the shortest path between start and end of teh stream
 with open(streams_file, 'r') as csvfile:
     csvreader = csv.reader(csvfile)
@@ -61,9 +90,8 @@ with open(streams_file, 'r') as csvfile:
         stream_id = row[1]
         path = nx.shortest_path(G,source=source,target=dest)
         # ## print the path
-        # print(path)
+        print(path)
         stream_paths[stream_id] = path
-        
         # using node_id as the key to the dictionary, add the streams that pass from this node to the node object's stream list
         for i, node_id in enumerate(path):
             next_node = None
@@ -75,14 +103,21 @@ with open(streams_file, 'r') as csvfile:
 for node in network_nodeS.items():
     # print(node)
     for stream, next_node in node[1].streams:
+        # print(stream)
         for link in links.items():
             # print(link)
             if (link[1][0] == node[0] and link[1][2] == next_node) or (link[1][2] == node[0] and link[1][0] == next_node):
-                inbound_port = int(link[1][1])
-                outbound_port = int(link[1][3])
-                print(inbound_port)
-                node[1].queues_matrix[stream.priority][inbound_port].append(stream)
+                assign_stream_to_queue(node,link,stream)
                 break
 
+
+   
+    
+
 for node in network_nodeS.items():
-    print(node[1].queues_matrix)
+    node[1].print_shaped_queues()
+
+
+# for node in network_nodeS.items():
+#     for row in node[1].queues_matrix:
+#         print(" ".join(map(str, row)))
