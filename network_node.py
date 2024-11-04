@@ -47,10 +47,10 @@ class NetworkNode:
         self.type = node_type
         self.streams = []
         self.n_input_ports = n_input_ports
-        self.output_ports = n_output_ports
+        self.output_ports = n_output_ports+1
         self.queues_matrix = [[[] for _ in range(n_input_ports)] for _ in range(8)] 
         self.queue_map = {}
-        for i in range(n_output_ports):
+        for i in range(self.output_ports):
             self.queue_map[i] = [[[] for _ in range(n_input_ports)] for _ in range(8)]
         if( node_type == 'ES'):
             self.queue_map[0] = [[[] for _ in range(n_input_ports)] for _ in range(8)]

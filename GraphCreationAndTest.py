@@ -8,8 +8,8 @@ from network_node import NetworkNode
 # Step 1: Read the CSV file
 # filename = 'csvs/example_topology.csv'
 # filename = 'csvs/smaller_topology.csv'
-topology_file = 'csvs/modified_topology.csv'
-streams_file = 'csvs/modified_streams.csv'
+topology_file = 'csvs/example_topology.csv'
+streams_file = 'csvs/example_streams.csv'
 
 nodes = set()
 edges = []
@@ -63,20 +63,22 @@ def assign_stream_to_queue_map(node,link,stream):
         inbound_port,outbound_port = get_ports(node,link)
         stream.ingress_port = inbound_port
         # print(inbound_port)
-        # print(link)
-        # print(node[1].name)
+        print(link)
+        print(node[1].name)
         #node[1].queues_matrix[stream.priority][inbound_port-1].append(stream)
+        print(outbound_port)
+        node_ports = node[1].output_ports
         if(node[1].type == 'ES'):
             queues_matrix = node[1].queue_map[0]
         else:
-            queues_matrix = node[1].queue_map[outbound_port-1]
+            queues_matrix = node[1].queue_map[outbound_port%node_ports]
         for q in queues_matrix[stream.priority]:
             if (q == []):
                 q.append(stream)
                 break
             else:
                 for s in q:
-                    if(s[0].ingress_port == inbound_port):
+                    if(s.ingress_port == inbound_port):
                         q.append(stream)
                         break
  
@@ -138,7 +140,3 @@ for node in network_nodeS.items():
 for node in network_nodeS.items():
     node[1].print_queues_map()
 
-
-# for node in network_nodeS.items():
-#     for row in node[1].queues_matrix:
-#         print(" ".join(map(str, row)))
