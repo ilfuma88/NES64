@@ -24,7 +24,7 @@ with open(topology_file, 'r') as csvfile:
     for row in csvreader:
         if row[0] == 'SW' or row[0] == 'ES':
             nodes.add(row[1])
-            network_nodeS[row[1]] = NetworkNode(row[1],row[0], int(row[2]))   #initialize all the logical nodes in a dictionary       
+            network_nodeS[row[1]] = NetworkNode(row[1],row[0], int(row[2]),int(row[2])//2)  
         elif row[0] == 'LINK':
             links[row[1]] = [row[2], row[3], row[4], row[5], row[6]]
             edges.append((row[2], row[4]))
@@ -59,7 +59,27 @@ def get_ports(node,link):
         return (int(link[1][1]),int(link[1][3]))
     return (int(link[1][3]),int(link[1][1]))
 
-
+def assign_stream_to_queue_map(node,link,stream):
+        inbound_port,outbound_port = get_ports(node,link)
+        stream.ingress_port = inbound_port
+        # print(inbound_port)
+        # print(link)
+        # print(node[1].name)
+        #node[1].queues_matrix[stream.priority][inbound_port-1].append(stream)
+        if(node[1].type == 'ES'):
+            queues_matrix = node[1].queue_map[0]
+        else:
+            queues_matrix = node[1].queue_map[outbound_port-1]
+        for q in queues_matrix[stream.priority]:
+            if (q == []):
+                q.append(stream)
+                break
+            else:
+                for s in q:
+                    if(s[0].ingress_port == inbound_port):
+                        q.append(stream)
+                        break
+ 
 
 def assign_stream_to_queue(node,link,stream):
         inbound_port,outbound_port = get_ports(node,link)
@@ -107,7 +127,8 @@ for node in network_nodeS.items():
         for link in links.items():
             # print(link)
             if (link[1][0] == node[0] and link[1][2] == next_node) or (link[1][2] == node[0] and link[1][0] == next_node):
-                assign_stream_to_queue(node,link,stream)
+                assign_stream_to_queue_map(node,link,stream)
+                node[1].is_active = True
                 break
 
 
@@ -115,7 +136,7 @@ for node in network_nodeS.items():
     
 
 for node in network_nodeS.items():
-    node[1].print_shaped_queues()
+    node[1].print_queues_map()
 
 
 # for node in network_nodeS.items():
