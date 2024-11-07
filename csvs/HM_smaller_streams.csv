@@ -1,0 +1,5 @@
+0,Flow_0,ATS,node2_0,node0_0,80,20000,12049
+2,Flow_1,ATS,node2_0,node0_1,130,2000,13396
+1,Flow_10,ATS,node2_1,node0_0,329,20000,12910
+0,Flow_11,ATS,node0_1,node2_0,373,4000,19044
+0,Flow_12,ATS,node0_0,node0_1,359,4000,17020

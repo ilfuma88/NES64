@@ -1,37 +1,44 @@
 import csv
+from typing import Dict, List
 import networkx as nx
 import matplotlib.pyplot as plt
 
-import network_node
 from network_stream import NetworkStream
 from network_node import NetworkNode
-# Step 1: Read the CSV file
-# filename = 'csvs/example_topology.csv'
-# filename = 'csvs/smaller_topology.csv'
-topology_file = 'csvs/example_topology.csv'
-streams_file = 'csvs/example_streams.csv'
+from HelperFunctions import map_node_to_port_names, assign_stream_to_queue_map, process_streams
 
+streams_file = 'csvs/streams.csv'
+topology_file = 'csvs/topology.csv'
+# streams_file = 'csvs/HM_smaller_streams.csv'
+# topology_file = 'csvs/HM_smaller_topology.csv'
+# topology_file = 'csvs/small-topology.csv'
+# streams_file = 'csvs/small-streams.csv'
 nodes = set()
 edges = []
 links = {}
 stream_paths ={} 
 network_nodeS = {}
+map_node_ports =  map_node_to_port_names(topology_file)
 
+# Print the keys and values in map_node_ports
+#test line can be coomented
+for key, value in map_node_ports.items():
+    print(f"Key: {key}, Value: {value}")
+
+
+#Parsing the CVS to generate the nodes for the graph and the network_nodes and the graph edges
 with open(topology_file, 'r') as csvfile:
     csvreader = csv.reader(csvfile)
-    
-    # Step 2: Parse the CSV data
     for row in csvreader:
         if row[0] == 'SW' or row[0] == 'ES':
             nodes.add(row[1])
-            network_nodeS[row[1]] = NetworkNode(row[1],row[0], int(row[2]),int(row[2])//2)  
+            network_nodeS[row[1]] = NetworkNode(row[1],row[0], int(row[2]), map_node_ports[row[1]])  
         elif row[0] == 'LINK':
-            links[row[1]] = [row[2], row[3], row[4], row[5], row[6]]
+            links[row[1]] = [row[2], row[3], row[4], row[5]]
             edges.append((row[2], row[4]))
 
 
-# print(links)
-# Step 3: Create the graph
+# Create the graph
 G = nx.Graph()
 
 # Step 4: Add nodes with NetworkNode objects as attributes
@@ -43,100 +50,52 @@ for edge in edges:
 
 
 
-# Step 5: Visualize the graph
-pos = nx.spring_layout(G, k=5)  # Increase k to make nodes more distant
-nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=10, font_weight='bold')
+# # # kinda test lines Step 5: Visualize the graph
+# pos = nx.spring_layout(G,)  # Increase k to make nodes more distant
+# nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=10, font_weight='bold')
 # plt.show()
 
-# ###print all the nodes in the graph and all of their attributes kinda
+
+###prints all the nodes maps for all the nodes in the graph
+print("Printing all the nodes maps")
+print("Printing all the nodes maps")
+for node in network_nodeS.items():
+    node[1].print_queues_map()
+    node[1].print_queues_map("1")
+
+# ####test lines print all the nodes in the graph and all of their attributes kinda
 # for node in G.nodes(data=True):
 #     print(node)
 #     print(node[1]['node_object'].name + " " + node[1]['node_object'].type)
-
-
-def get_ports(node,link):
-    if(link[1][0] == node[0]):
-        return (int(link[1][1]),int(link[1][3]))
-    return (int(link[1][3]),int(link[1][1]))
-
-def assign_stream_to_queue_map(node,link,stream):
-        inbound_port,outbound_port = get_ports(node,link)
-        stream.ingress_port = inbound_port
-        # print(inbound_port)
-        print(link)
-        print(node[1].name)
-        #node[1].queues_matrix[stream.priority][inbound_port-1].append(stream)
-        print(outbound_port)
-        node_ports = node[1].output_ports
-        if(node[1].type == 'ES'):
-            queues_matrix = node[1].queue_map[0]
-        else:
-            queues_matrix = node[1].queue_map[outbound_port%node_ports]
-        for q in queues_matrix[stream.priority]:
-            if (q == []):
-                q.append(stream)
-                break
-            else:
-                for s in q:
-                    if(s.ingress_port == inbound_port):
-                        q.append(stream)
-                        break
- 
-
-def assign_stream_to_queue(node,link,stream):
-        inbound_port,outbound_port = get_ports(node,link)
-        stream.ingress_port = inbound_port
-        # print(inbound_port)
-        # print(link)
-        # print(node[1].name)
-        #node[1].queues_matrix[stream.priority][inbound_port-1].append(stream)
-        for q in node[1].queues_matrix[stream.priority]:
-            if (q == []):
-                q.append(stream)
-                break
-            else:
-                for s in q:
-                    if(s[0].ingress_port == inbound_port):
-                        q.append(stream)
-                        break
         
  
-#fiding the shortest path between start and end of teh stream
-with open(streams_file, 'r') as csvfile:
-    csvreader = csv.reader(csvfile)
-    
-    # Step 2: Parse the CSV data
-    for row in csvreader:
-        source = row[3]
-        dest   = row[4]
-        stream_id = row[1]
-        path = nx.shortest_path(G,source=source,target=dest)
-        # ## print the path
-        print(path)
-        stream_paths[stream_id] = path
-        # using node_id as the key to the dictionary, add the streams that pass from this node to the node object's stream list
-        for i, node_id in enumerate(path):
-            next_node = None
-            if i < len(path) - 1:
-                next_node = path[i + 1]
-            stream = (NetworkStream(stream_id,row[2],source,dest,int(row[5]),int(row[6]),int(row[7]),int(row[0])),next_node)
-            network_nodeS[node_id].add_stream(stream)
+stream_paths = process_streams(streams_file, network_nodeS, G)
 
-for node in network_nodeS.items():
-    # print(node)
-    for stream, next_node in node[1].streams:
-        # print(stream)
-        for link in links.items():
-            # print(link)
-            if (link[1][0] == node[0] and link[1][2] == next_node) or (link[1][2] == node[0] and link[1][0] == next_node):
-                assign_stream_to_queue_map(node,link,stream)
-                node[1].is_active = True
-                break
+# Print all the streams in all the nodes
+for node_name, node in network_nodeS.items():
+    print(f"Node: {node_name}")
+    for stream in node.streams_tuples:
+        print(f"  Stream: {stream}")
+        print(f"  Stream ID: {stream[1]}")
+        print(f"  Stream ID: {stream[2]}")
+        print(f"  Stream ID: {stream[0]}")
+        
+# for node in network_nodeS.items():
+#     # print(node)
+#     for stream, next_node in node[1].streams:
+#         # print(stream)
+#         for link in links.items():
+#             # print(link)
+#             if (link[1][0] == node[0] and link[1][2] == next_node) or (link[1][2] == node[0] and link[1][0] == next_node):
+#                 assign_stream_to_queue_map(node,link,stream)
+#                 node[1].is_active = True
+#                 break
 
 
-   
+# for node in network_nodeS.items():
+#     node[1].print_queues_map()
     
 
-for node in network_nodeS.items():
-    node[1].print_queues_map()
+
+
 
