@@ -69,15 +69,12 @@ def assign_stream_to_queue_map(node,link,stream):
         inbound_port,outbound_port = get_ports(node,link)
         stream.ingress_port = inbound_port
         # print(inbound_port)
-        print(link)
-        print(node[1].name)
-        #node[1].queues_matrix[stream.priority][inbound_port-1].append(stream)
-        print(outbound_port)
-        node_ports = node[1].n_ports
-        if(node[1].type == 'ES'):
-            queues_matrix = node[1].queue_map[0]
-        else:
-            queues_matrix = node[1].queue_map[outbound_port%node_ports]
+        # print(link)
+        # print(node[1].name)
+        # #node[1].queues_matrix[stream.priority][inbound_port-1].append(stream)
+        # print(outbound_port)
+        # node_ports = node[1].n_ports
+        queues_matrix = node[1].queues_map[str(inbound_port)]
         for q in queues_matrix[stream.priority]:
             if (q == []):
                 q.append(stream)

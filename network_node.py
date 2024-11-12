@@ -113,13 +113,30 @@ class NetworkNode:
         Args:
             key (str, optional): The key to print the array for. Defaults to None.
         """
+        if(self.is_active == False):
+            print(f"Node {self.name} does not contain any streams.")
+            return
+        print(f"===========Node: {self.name}====================")
         if key is None:
             print("Keys in queues_map:")
             for k in self.queues_map.keys():
-                print(f"  - {k}")
+                print(f"  - {k} ")
+        elif key=="all":
+            for k in self.queues_map.keys():
+                print(f"Array for key '{k}':")
+                
+                arr = self.queues_map[k]
+                if(arr != []):
+                    for i in range(len(arr)):
+                        print(f"Priority {i}:")
+                        for j in range(len(arr[i])):
+                            print(f"  Port {j}:")
+                            for s in arr[i][j]:
+                                print(f"    - Stream ID: {s.stream_id}")
         else:
             if key in self.queues_map:
                 print(f"Array for key '{key}':")
                 print(self.queues_map[key])
             else:
                 print(f"Key '{key}' not found in queues_map.")
+        print("==============================================")

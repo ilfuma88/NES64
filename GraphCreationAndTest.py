@@ -57,11 +57,11 @@ for edge in edges:
 
 
 ###prints all the nodes maps for all the nodes in the graph
-print("Printing all the nodes maps")
-print("Printing all the nodes maps")
-for node in network_nodeS.items():
-    node[1].print_queues_map()
-    node[1].print_queues_map("1")
+# print("Printing all the nodes maps")
+# print("Printing all the nodes maps")
+# for node in network_nodeS.items():
+#     node[1].print_queues_map()
+#     node[1].print_queues_map("1")
 
 # ####test lines print all the nodes in the graph and all of their attributes kinda
 # for node in G.nodes(data=True):
@@ -72,28 +72,27 @@ for node in network_nodeS.items():
 stream_paths = process_streams(streams_file, network_nodeS, G)
 
 # Print all the streams in all the nodes
-for node_name, node in network_nodeS.items():
-    print(f"Node: {node_name}")
-    for stream in node.streams_tuples:
-        print(f"  Stream: {stream}")
-        print(f"  Stream ID: {stream[1]}")
-        print(f"  Stream ID: {stream[2]}")
-        print(f"  Stream ID: {stream[0]}")
+# for node_name, node in network_nodeS.items():
+#     print(f"Node: {node_name}")
+#     for stream in node.streams_tuples:
+#         print(f"  Stream: {stream}")
+#         print(f"  Stream ID: {stream[1]}")
+#         print(f"  Stream ID: {stream[2]}")
+#         print(f"  Stream ID: {stream[0]}")
         
-# for node in network_nodeS.items():
-#     # print(node)
-#     for stream, next_node in node[1].streams:
-#         # print(stream)
-#         for link in links.items():
-#             # print(link)
-#             if (link[1][0] == node[0] and link[1][2] == next_node) or (link[1][2] == node[0] and link[1][0] == next_node):
-#                 assign_stream_to_queue_map(node,link,stream)
-#                 node[1].is_active = True
-#                 break
+for node in network_nodeS.items():
+    for stream, next_node,prev_node in node[1].streams_tuples:
+        # print(stream)
+        for link in links.items():
+            # print(link)
+            if (link[1][0] == node[0] and link[1][2] == next_node) or (link[1][2] == node[0] and link[1][0] == next_node):
+                assign_stream_to_queue_map(node,link,stream)
+                node[1].is_active = True
+                break
 
 
-# for node in network_nodeS.items():
-#     node[1].print_queues_map()
+for node in network_nodeS.items():
+    node[1].print_queues_map("all")
     
 
 
