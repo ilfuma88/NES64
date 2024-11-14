@@ -1,0 +1,11 @@
+{
+    "editor.inlineSuggest.enabled": true,
+    "editor.inlineSuggest.syntaxHighlightingEnabled": true,
+    "inlineChat.finishOnType": true,
+    "github.copilot.chat.temporalContext.enabled": true,
+    "github.copilot.editor.enableAutoCompletions": true,
+    "github.copilot.chat.inlineChatCompletionTrigger.enabled": false,
+    "github.copilot.chat.inlineChatHint.enabled": false,
+    "editor.suggestOnTriggerCharacters": true,
+    "terminal.integrated.suggest.enabled": true
+}

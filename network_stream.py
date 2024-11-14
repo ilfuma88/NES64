@@ -18,3 +18,5 @@ class NetworkStream:
             + self.src_node + ", Destination: " + self.dest_node + ", Size: " + str(self.burst_size) + \
             ", Period: " + str(self.period) + ", Deadline: " + str(self.deadline) + \
             ", Rate: " + str(self.rate) + ", Priority: " + str(self.priority)
+            
+            

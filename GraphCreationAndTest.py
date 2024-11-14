@@ -17,7 +17,7 @@ nodes = set()
 edges = []
 links = {}
 stream_paths ={} 
-network_nodeS = {}
+network_nodeS: Dict[str, NetworkNode] = {}
 map_node_ports =  map_node_to_port_names(topology_file)
 
 # Print the keys and values in map_node_ports
@@ -34,7 +34,7 @@ with open(topology_file, 'r') as csvfile:
             nodes.add(row[1])
             network_nodeS[row[1]] = NetworkNode(row[1],row[0], int(row[2]), map_node_ports[row[1]])  
         elif row[0] == 'LINK':
-            links[row[1]] = [row[2], row[3], row[4], row[5]]
+            links[row[1]] = [row[2], row[3], row[4], row[5]] #array: node1, port1, node2, port2
             edges.append((row[2], row[4]))
 
 
@@ -81,12 +81,13 @@ stream_paths = process_streams(streams_file, network_nodeS, G)
 #         print(f"  Stream ID: {stream[0]}")
         
 for node in network_nodeS.items():
-    for stream, next_node,prev_node in node[1].streams_tuples:
+    for stream, next_node,prev_node in node[1].streams_tuples: #node is a tuple (name, NetworkNode) this loop iterates over all the streams in the node
         # print(stream)
         for link in links.items():
             # print(link)
-            if (link[1][0] == node[0] and link[1][2] == next_node) or (link[1][2] == node[0] and link[1][0] == next_node):
-                assign_stream_to_queue_map(node,link,stream)
+            link = link[1] #link is a tuple (name, [node1, port1, node2, port2])
+            if (link[0] == node[0] and link[2] == next_node) or (link[2] == node[0] and link[0] == next_node):
+                assign_stream_to_queue_map(node[1],link,stream, prev_node=prev_node, next_node=next_node) 
                 node[1].is_active = True
                 break
 

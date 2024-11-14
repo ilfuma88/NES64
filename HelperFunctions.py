@@ -1,6 +1,7 @@
 import csv
-from typing import Dict, List
+from typing import Dict, List, Tuple
 import networkx as nx
+from extended_stream import ExtendedStream
 from network_node import NetworkNode
 from network_stream import NetworkStream
 
@@ -65,32 +66,56 @@ def assign_stream_to_queue(node,link,stream):
                     break
                     
                     
-def assign_stream_to_queue_map(node,link,stream):
-        inbound_port,outbound_port = get_ports(node,link)
-        stream.ingress_port = inbound_port
-        # print(inbound_port)
-        # print(link)
-        # print(node[1].name)
-        # #node[1].queues_matrix[stream.priority][inbound_port-1].append(stream)
-        # print(outbound_port)
-        # node_ports = node[1].n_ports
-        queues_matrix = node[1].queues_map[str(inbound_port)]
-        for q in queues_matrix[stream.priority]:
-            if (q == []):
-                q.append(stream)
-                break
-            else:
-                for s in q:
-                    if(s.ingress_port == inbound_port):
-                        q.append(stream)
-                        break
+def assign_stream_to_queue_map(node: NetworkNode,link: List[str],stream: NetworkStream,
+                               prev_node: NetworkNode, next_node: NetworkNode):
+    """
+    #link : array = [node1, port1, node2, port2]
+    Args:
+        node (NetworkNode): _description_
+        link (List[str]): _description_
+        stream (NetworkStream): _description_
+    """
+    extended_stream = ExtendedStream(stream, prev_node, next_node)
+    outbound_port, dest_inbound_port = get_ports(node,link)
+    stream.ingress_port = outbound_port
+    # print(outbound_port)
+    # print(link)
+    # print(node.name)
+    # #node.queues_matrix[stream.priority][inbound_port-1].append(stream)
+    # print(dest_inbound_port)
+    # node_ports = node.n_ports
+    queues_matrix = node.queues_map[str(outbound_port)]
+    for q in queues_matrix[stream.priority]:
+        if (q == []):
+            q.append(extended_stream)
+            break
+        else:
+            for ext_str in q:
+                if(ext_str.prev_node == extended_stream.prev_node):
+                    q.append(stream)
+                    break
                     
                     
                     
-def get_ports(node,link):
-    if(link[1][0] == node[0]):
-        return (int(link[1][1]),int(link[1][3]))
-    return (int(link[1][3]),int(link[1][1]))
+def get_ports(node: NetworkNode,link) -> Tuple[int,int]:
+    """based on which side of the link the node is, 
+    returns the outbound port for the node 
+    and the inbound port for the next node.
+    so the first port in the tuple is the port number for the node 
+    that I passed to the function
+    Args:
+        node (NetworkNode): _description_
+        link (_type_): _description_
+
+    Returns:
+        (int,int): _description_
+    """
+    print("cheeking the values")
+    print(f"link[0]: {link[0]}, node.name: {node.name}")
+    if(link[0] == node.name):
+        #link : array = [node1, port1, node2, port2]
+        return (int(link[1]),int(link[3]))
+    return (int(link[3]),int(link[1]))
 
 
 
