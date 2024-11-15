@@ -1,9 +1,10 @@
 
 from __future__ import annotations
 import csv
-from typing import List
+from typing import Dict, List
 import networkx as nx
 import matplotlib.pyplot as plt
+from extended_stream import ExtendedStream
 from ready_queue import ReadyQueue
 from network_stream import NetworkStream
 from shaped_queue import ShapedQueue 
@@ -11,19 +12,6 @@ from shaped_queue import ShapedQueue
 
 
 class NetworkNode:
-    """
-    Represents a node in the network.
-    
-    Attributes:
-        name (str): The name of the node.
-        type (str): The type of the node (e.g., SW, ES).
-        streams (list of Stream): An array of Stream objects associated with the node.
-    """
-    
-    name: str
-    type: str
-    streams_tuples: List[tuple[NetworkStream,NetworkNode,NetworkNode]]
-
     
     def __init__(self, name: str, node_type: str, n_ports: int, port_names: List[str]):
         """
@@ -49,12 +37,12 @@ class NetworkNode:
         n_output_ports (int): The number of output ports.
         port_names: List[str]: The names of the ports used in the topology file
     """
-        self.name = name
-        self.type = node_type
-        self.streams_tuples = []
+        self.name:str = name
+        self.types:str = node_type
+        self.streams_tuples:List[tuple[NetworkStream,NetworkNode,NetworkNode]] = []
         self.n_ports = n_ports
         self.port_names = port_names
-        self.queues_map = {}        
+        self.queues_map:Dict[str:List[List[List[ExtendedStream]]]]= {}        
         for port_name in port_names:
             self.queues_map[port_name] = [[[] for _ in range(n_ports)] for _ in range(8)]
         self.is_active = False #for prints (true if it contains streams) 
@@ -105,38 +93,42 @@ class NetworkNode:
         for queue in self.ready_queues:
             print(f"  - Queue ID: {queue.queue_id}")
             
-    def print_queues_map(self, key:str=None):
+    def print_queues_map(self, port:str=None):
         """
         Prints all the keys in the queues_map if no key is provided.
-        If a key is provided, prints the array for that specific key.
+        If a port is provided, prints the array for that specific port.
+        if port is "all" prints all the arrays for all the ports.
         
         Args:
-            key (str, optional): The key to print the array for. Defaults to None.
+            port (str, optional): The key to print the array for. Defaults to None.
         """
         if(self.is_active == False):
             print(f"Node {self.name} does not contain any streams.")
             return
         print(f"===========Node: {self.name}====================")
-        if key is None:
+        if port is None:
             print("Keys in queues_map:")
-            for k in self.queues_map.keys():
-                print(f"  - {k} ")
-        elif key=="all":
-            for k in self.queues_map.keys():
-                print(f"Array for key '{k}':")
+            for p in self.queues_map.keys():
+                print(f"  - {p} ")
+        elif port=="all":
+            for p in self.queues_map.keys():
+                print(f"queues for port '{p}':")
                 
-                arr = self.queues_map[k]
-                if(arr != []):
-                    for i in range(len(arr)):
-                        print(f"Priority {i}:")
-                        for j in range(len(arr[i])):
-                            print(f"  Port {j}:")
-                            for s in arr[i][j]:
-                                print(f"    - Stream ID: {s.stream_id}")
+                queues_matrix = self.queues_map[p]
+                if(queues_matrix != []):
+                    for priority in range(len(queues_matrix)):
+                        print(f"Priority {priority}:")
+                        for s_q in range(len(queues_matrix[priority])):
+                            if any(queues_matrix[priority][s_q]):
+                                print(f"  shaped queue {s_q}:")
+                                for e_s in queues_matrix[priority][s_q]:
+                                    assert isinstance(e_s, ExtendedStream), f"Expected type {ExtendedStream}, but got {type(e_s)}"
+                                    print(f"    - Stream ID: {e_s.stream.stream_id}")
+                                    
         else:
-            if key in self.queues_map:
-                print(f"Array for key '{key}':")
-                print(self.queues_map[key])
+            if port in self.queues_map:
+                print(f"Array for key '{port}':")
+                print(self.queues_map[port])
             else:
-                print(f"Key '{key}' not found in queues_map.")
+                print(f"Key '{port}' not found in queues_map.")
         print("==============================================")

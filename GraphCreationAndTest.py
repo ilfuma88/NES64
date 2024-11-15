@@ -3,7 +3,6 @@ from typing import Dict, List
 import networkx as nx
 import matplotlib.pyplot as plt
 
-from network_stream import NetworkStream
 from network_node import NetworkNode
 from HelperFunctions import map_node_to_port_names, assign_stream_to_queue_map, process_streams
 
@@ -18,12 +17,13 @@ edges = []
 links = {}
 stream_paths ={} 
 network_nodeS: Dict[str, NetworkNode] = {}
+"""key is the node name and value is a list of port numbers (used in case the node doesnt have sequential port numbers or other edge cases)"""
 map_node_ports =  map_node_to_port_names(topology_file)
 
 # Print the keys and values in map_node_ports
 #test line can be coomented
-for key, value in map_node_ports.items():
-    print(f"Key: {key}, Value: {value}")
+# for key, value in map_node_ports.items():
+#     print(f"Key: {key}, Value: {value}")
 
 
 #Parsing the CVS to generate the nodes for the graph and the network_nodes and the graph edges

@@ -92,7 +92,7 @@ def assign_stream_to_queue_map(node: NetworkNode,link: List[str],stream: Network
         else:
             for ext_str in q:
                 if(ext_str.prev_node == extended_stream.prev_node):
-                    q.append(stream)
+                    q.append(extended_stream)
                     break
                     
                     
@@ -110,8 +110,8 @@ def get_ports(node: NetworkNode,link) -> Tuple[int,int]:
     Returns:
         (int,int): _description_
     """
-    print("cheeking the values")
-    print(f"link[0]: {link[0]}, node.name: {node.name}")
+    # print("cheeking the values in get_ports")
+    # print(f"link[0]: {link[0]}, node.name: {node.name}")
     if(link[0] == node.name):
         #link : array = [node1, port1, node2, port2]
         return (int(link[1]),int(link[3]))
@@ -143,7 +143,7 @@ def process_streams(streams_file: str, network_nodeS: dict[str, NetworkNode], G:
             dest = row[4]
             stream_id = row[1]
             path = nx.shortest_path(G, source=source, target=dest)
-            print(path)
+            # print(path)
             stream_paths[stream_id] = path
             # Add the stream to the nodes along the path
             for i, node_id in enumerate(path):
