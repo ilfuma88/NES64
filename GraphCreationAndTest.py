@@ -20,8 +20,8 @@ network_nodeS: Dict[str, NetworkNode] = {}
 """key is the node name and value is a list of port numbers (used in case the node doesnt have sequential port numbers or other edge cases)"""
 map_node_ports =  map_node_to_port_names(topology_file)
 
-# Print the keys and values in map_node_ports
-#test line can be coomented
+# # Print the keys and values in map_node_ports
+# #test line can be commented
 # for key, value in map_node_ports.items():
 #     print(f"Key: {key}, Value: {value}")
 
@@ -56,13 +56,6 @@ for edge in edges:
 # plt.show()
 
 
-###prints all the nodes maps for all the nodes in the graph
-# print("Printing all the nodes maps")
-# print("Printing all the nodes maps")
-# for node in network_nodeS.items():
-#     node[1].print_queues_map()
-#     node[1].print_queues_map("1")
-
 # ####test lines print all the nodes in the graph and all of their attributes kinda
 # for node in G.nodes(data=True):
 #     print(node)
@@ -81,6 +74,9 @@ stream_paths = process_streams(streams_file, network_nodeS, G)
 #         print(f"  Stream ID: {stream[0]}")
         
 for node in network_nodeS.items():
+    print(f"Node: {node[0]}")
+    for stream_tuple in node[1].streams_tuples:
+        print(f"  Stream Tuple: {stream_tuple}")
     for stream, next_node,prev_node in node[1].streams_tuples: #node is a tuple (name, NetworkNode) this loop iterates over all the streams in the node
         # print(stream)
         for link in links.items():
