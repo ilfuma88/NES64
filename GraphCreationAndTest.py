@@ -14,9 +14,11 @@ topology_file = 'csvs/topology.csv'
 # streams_file = 'csvs/small-streams.csv'
 nodes = set()
 edges = []
-links = {}
+links:Dict[str, List[str]] = {}
 stream_paths ={} 
 network_nodeS: Dict[str, NetworkNode] = {}
+"""nodes_to_out_ports_map[node_name] = list of nodes with associated out_ports to rich them from node_name"""
+nodes_to_out_ports_map :Dict[str,List[Dict[str,str]]]= {} 
 """key is the node name and value is a list of port numbers (used in case the node doesnt have sequential port numbers or other edge cases)"""
 map_node_ports =  map_node_to_port_names(topology_file)
 
@@ -36,7 +38,17 @@ with open(topology_file, 'r') as csvfile:
         elif row[0] == 'LINK':
             links[row[1]] = [row[2], row[3], row[4], row[5]] #array: node1, port1, node2, port2
             edges.append((row[2], row[4]))
+            if row[2] not in nodes_to_out_ports_map:
+                nodes_to_out_ports_map[row[2]] = [(row[4], row[3])]
+            else:
+                nodes_to_out_ports_map[row[2]].append((row[4], row[3]))
+            if row[4] not in nodes_to_out_ports_map:
+                nodes_to_out_ports_map[row[4]] = [(row[2], row[5])]
+            else:
+                nodes_to_out_ports_map[row[4]].append((row[2], row[5]))
 
+# #just test line
+# print(nodes_to_out_ports_map)
 
 # Create the graph
 G = nx.Graph()
@@ -62,31 +74,14 @@ for edge in edges:
 #     print(node[1]['node_object'].name + " " + node[1]['node_object'].type)
         
  
-stream_paths = process_streams(streams_file, network_nodeS, G)
+stream_paths = process_streams(streams_file, network_nodeS, G, links, nodes_to_out_ports_map)
 
-# Print all the streams in all the nodes
-# for node_name, node in network_nodeS.items():
-#     print(f"Node: {node_name}")
-#     for stream in node.streams_tuples:
-#         print(f"  Stream: {stream}")
-#         print(f"  Stream ID: {stream[1]}")
-#         print(f"  Stream ID: {stream[2]}")
-#         print(f"  Stream ID: {stream[0]}")
         
+##assigning all the streams to the right shaped queues inside the nodes they cross
 for node in network_nodeS.items():
-    print(f"Node: {node[0]}")
-    for stream_tuple in node[1].streams_tuples:
-        print(f"  Stream Tuple: {stream_tuple}")
-    for stream, next_node,prev_node in node[1].streams_tuples: #node is a tuple (name, NetworkNode) this loop iterates over all the streams in the node
-        # print(stream)
-        for link in links.items():
-            # print(link)
-            link = link[1] #link is a tuple (name, [node1, port1, node2, port2])
-            if (link[0] == node[0] and link[2] == next_node) or (link[2] == node[0] and link[0] == next_node):
-                assign_stream_to_queue_map(node[1],link,stream, prev_node=prev_node, next_node=next_node) 
-                node[1].is_active = True
-                break
-
+    for e_stream in node[1].extended_streams: #node is a tuple (name, NetworkNode) this loop iterates over all the streams in the node
+        assign_stream_to_queue_map(node[1],e_stream) 
+        node[1].is_active = True
 
 for node in network_nodeS.items():
     node[1].print_queues_map("all")
