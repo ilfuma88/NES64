@@ -64,6 +64,7 @@ def map_node_to_port_names(csv_file_path: str) -> Dict[str, List[str]]:
                     
                     
 def assign_stream_to_queue_map(node: NetworkNode, ext_stream: ExtendedStream):
+    #the node is the final destination for the stream
     if ext_stream.out_port is None:
         return
         
@@ -82,31 +83,7 @@ def assign_stream_to_queue_map(node: NetworkNode, ext_stream: ExtendedStream):
                     break
         if assigned:
             break
-                    
-
-def assign_stream_to_queue_map_OLD(node: NetworkNode,link: List[str],stream: NetworkStream,
-                               prev_node: NetworkNode, next_node: NetworkNode):
-    """
-    #link : array = [node1, port1, node2, port2]
-    Args:
-        node (NetworkNode): _description_
-        link (List[str]): _description_
-        stream (NetworkStream): _description_
-    """
-    extended_stream = ExtendedStream(stream, prev_node, next_node)
-    outbound_port, dest_inbound_port = get_ports(node,link)
-    stream.ingress_port = outbound_port
-
-    queues_matrix = node.queues_map[str(outbound_port)]
-    for q in queues_matrix[stream.priority]:
-        if (q == []):
-            q.append(extended_stream)
-            break
-        else:
-            for ext_str in q:
-                if(ext_str.prev_node == extended_stream.prev_node):
-                    q.append(extended_stream)
-                    break                    
+                                      
                     
 def get_ports(node: NetworkNode,link) -> Tuple[int,int]:
     """based on which side of the link the node is, 
@@ -130,7 +107,7 @@ def get_ports(node: NetworkNode,link) -> Tuple[int,int]:
 
 
 
-def process_streams(streams_file: str, network_nodeS: dict[str, NetworkNode], 
+def process_streams_paths_and_append_in_nodes(streams_file: str, network_nodeS: dict[str, NetworkNode], 
                     G: nx.Graph, links:Dict[str, List[str]], nodes_to_out_ports_map :Dict[str,List[Dict[str,str]]]) -> dict:
     """
     Processes the streams from a CSV file, computes their shortest paths,
@@ -189,7 +166,7 @@ def process_streams(streams_file: str, network_nodeS: dict[str, NetworkNode],
                     int(row[0])
                 )
                 e_stream = ExtendedStream(net_stream, previous_node, next_node,outbound_port)
-                network_nodeS[node_id].add_stream_tuple(e_stream)
+                network_nodeS[node_id].add_extended_stream(e_stream)
     
     return stream_paths
  

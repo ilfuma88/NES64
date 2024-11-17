@@ -4,7 +4,8 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 from network_node import NetworkNode
-from HelperFunctions import map_node_to_port_names, assign_stream_to_queue_map, process_streams
+from HelperFunctions import map_node_to_port_names, assign_stream_to_queue_map, process_streams_paths_and_append_in_nodes
+from wcd_computations import wcd_delay_for_network
 
 streams_file = 'csvs/streams.csv'
 topology_file = 'csvs/topology.csv'
@@ -15,12 +16,15 @@ topology_file = 'csvs/topology.csv'
 nodes = set()
 edges = []
 links:Dict[str, List[str]] = {}
-stream_paths ={} 
+"""stream_paths, dict, where the key is stream name and value is a list of nodes that the stream crosses. {Stream_n: [node_1, node_2, ...], Stream_x: [node_2, node_5, ...]}"""
+streams_paths:dict[str:list[str]] ={} 
 network_nodeS: Dict[str, NetworkNode] = {}
 """nodes_to_out_ports_map[node_name] = list of nodes with associated out_ports to rich them from node_name"""
 nodes_to_out_ports_map :Dict[str,List[Dict[str,str]]]= {} 
 """key is the node name and value is a list of port numbers (used in case the node doesnt have sequential port numbers or other edge cases)"""
 map_node_ports =  map_node_to_port_names(topology_file)
+delays_results:Dict[str, float] = {}
+
 
 # # Print the keys and values in map_node_ports
 # #test line can be commented
@@ -63,12 +67,12 @@ for edge in edges:
 
 
 
-# # kinda test lines Step 5: Visualize the graph
-pos = nx.spring_layout(G,)  # Increase k to make nodes more distant
-nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=10, font_weight='bold')
-# plt.show(block=True)
-plt.pause(4)  # Small pause to allow the window to appear
-plt.show(block=False)
+# # # kinda test lines Step 5: Visualize the graph
+# pos = nx.spring_layout(G,)  # Increase k to make nodes more distant
+# nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=10, font_weight='bold')
+# # plt.show(block=True)
+# plt.pause(4)  # Small pause to allow the window to appear
+# plt.show(block=False)
 
 
 # ####test lines print all the nodes in the graph and all of their attributes kinda
@@ -77,19 +81,26 @@ plt.show(block=False)
 #     print(node[1]['node_object'].name + " " + node[1]['node_object'].type)
         
  
-stream_paths = process_streams(streams_file, network_nodeS, G, links, nodes_to_out_ports_map)
+streams_paths = process_streams_paths_and_append_in_nodes(streams_file, network_nodeS, G, links, nodes_to_out_ports_map)
 
         
 ##assigning all the streams to the right shaped queues inside the nodes they cross
 for node in network_nodeS.items():
-    for e_stream in node[1].extended_streams: #node is a tuple (name, NetworkNode) this loop iterates over all the streams in the node
-        assign_stream_to_queue_map(node[1],e_stream) 
+    # print(node[1].extended_streams)
+    # for streams_id, e_stream in node[1].extended_streams: #node is a tuple (name, NetworkNode) this loop iterates over all the streams in the node
+    #     assign_stream_to_queue_map(node[1],e_stream) 
+    #     node[1].is_active = True
+    for streams_id, e_stream in node[1].extended_streams.items():  # node is a tuple (node_id, NetworkNode) node[1]=NetworkNode
+        assign_stream_to_queue_map(node[1], e_stream)
         node[1].is_active = True
-
+    
+#test line to see all te shaped queues in all the nodes
 for node in network_nodeS.items():
     node[1].print_queues_map("all")
-    
+        
+# #computing all of the WCD delays
+# delays_results = wcd_delay_for_network(network_nodeS, streams_paths)
 
-
-
-
+# # Print the delays results for every stream
+# for stream_id, delay in delays_results.items():
+#     print(f"Stream {stream_id}: Delay {delay}")

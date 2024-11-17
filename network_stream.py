@@ -1,4 +1,9 @@
 class NetworkStream:
+    """
+    priority is a number from 0 to 7 and we suppose that 0 is the highest priority
+    Returns:
+        _type_: _description_
+    """
     stream_id = ""
     ingress_port = 0 
     def __init__(self,stream_id,stream_type,src_node,dest_node,size,period,deadline,priority):
@@ -9,8 +14,8 @@ class NetworkStream:
         self.burst_size = size
         self.period = period
         self.deadline = deadline
-        self.rate = size/period
-        self.priority = priority
+        self.rate = size/period 
+        self.priority = priority#priority is a number from 0 to 7 and we suppose that 0 is the highest priority
         
         
     def __str__(self):

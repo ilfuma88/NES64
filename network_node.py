@@ -39,7 +39,7 @@ class NetworkNode:
     """
         self.name:str = name
         self.types:str = node_type
-        self.extended_streams:List[ExtendedStream] = []
+        self.extended_streams:Dict[str,ExtendedStream] = {}
         self.n_ports = n_ports
         self.port_names = port_names
         self.queues_map:Dict[str:List[List[List[ExtendedStream]]]]= {}        
@@ -48,14 +48,14 @@ class NetworkNode:
         self.is_active = False #for prints (true if it contains streams) 
         # print(self.queue_map)
         
-    def add_stream_tuple(self, e_stream:ExtendedStream):
+    def add_extended_stream(self, e_stream:ExtendedStream):
         """
         Adds a Stream object to the streams list.
         
         Args:
             stream (Stream): The Stream object to be added.
         """
-        self.extended_streams.append(e_stream)
+        self.extended_streams[e_stream.stream.stream_id] = e_stream
 
 
     def print_streams(self):
@@ -65,7 +65,7 @@ class NetworkNode:
         for stream in self.extended_streams:
             print(stream[0])
 
-    def get_stream(self, stream_id):
+    def get_extended_stream(self, stream_id):
         """
         Returns the stream with the given stream ID.
         
@@ -75,10 +75,7 @@ class NetworkNode:
         Returns:
             Stream: The Stream object with the given stream ID.
         """
-        for stream in self.extended_streams:
-            if stream.stream_id == stream_id:
-                return stream
-        return None
+        return self.extended_streams[stream_id]
 
     def print(self):
         """
