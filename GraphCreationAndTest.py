@@ -62,10 +62,11 @@ for edge in edges:
 
 
 
-# # # kinda test lines Step 5: Visualize the graph
-# pos = nx.spring_layout(G,)  # Increase k to make nodes more distant
-# nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=10, font_weight='bold')
-# plt.show()
+
+# # kinda test lines Step 5: Visualize the graph
+pos = nx.spring_layout(G,)  # Increase k to make nodes more distant
+nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=10, font_weight='bold')
+plt.show()
 
 
 # ####test lines print all the nodes in the graph and all of their attributes kinda

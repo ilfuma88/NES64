@@ -63,25 +63,25 @@ def map_node_to_port_names(csv_file_path: str) -> Dict[str, List[str]]:
 
                     
                     
-def assign_stream_to_queue_map(node: NetworkNode,ext_stream: ExtendedStream):
-    """
-    Args:
-        node (NetworkNode): _description_
-        link (List[str]): _description_
-        stream (NetworkStream): _description_
-    """
-    if(ext_stream.out_port == None): ##in this case we dont have to do any assignment cause we are inside the last node
+def assign_stream_to_queue_map(node: NetworkNode, ext_stream: ExtendedStream):
+    if ext_stream.out_port is None:
         return
+        
     queues_matrix = node.queues_map[str(ext_stream.out_port)]
+    assigned = False
     for q in queues_matrix[ext_stream.stream.priority]:
-        if (q == []):
+        if not q:  # Queue is empty
             q.append(ext_stream)
+            assigned = True
             break
         else:
             for ext_str in q:
-                if(ext_str.prev_node == ext_stream.prev_node):
+                if ext_str.prev_node == ext_stream.prev_node:
                     q.append(ext_stream)
+                    assigned = True
                     break
+        if assigned:
+            break
                     
 
 def assign_stream_to_queue_map_OLD(node: NetworkNode,link: List[str],stream: NetworkStream,
