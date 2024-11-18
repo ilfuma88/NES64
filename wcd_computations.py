@@ -75,13 +75,13 @@ def compute_node_delay_for_stream(node: NetworkNode, stream_id:str) -> float:
         r_H_total_reserver_rate_higher_prio = hiigher_total_reserver_rate_higher_prio(node, ext_stream.stream.stream_id)
         l_L_max_frame_of_lower_prio = bigger_frame_lower_priority(node, ext_stream.stream.stream_id)
         #making names shorte to make the formula more readable
-        b_H :float= b_H_total_higher_priority_burst
-        b_C :float= b_C_total_burst_same_prio
-        b_j :float= b_j_frame_burst
-        l_j :float= l_j_frame_minimum_length
-        l_L :float= l_L_max_frame_of_lower_prio
-        r   :float= r_link_rate
-        r_H :float= r_H_total_reserver_rate_higher_prio
+        b_H :int= b_H_total_higher_priority_burst
+        b_C :int= b_C_total_burst_same_prio
+        b_j :int= b_j_frame_burst
+        l_j :int= l_j_frame_minimum_length
+        l_L :int= l_L_max_frame_of_lower_prio
+        r   :int= r_link_rate
+        r_H :int= r_H_total_reserver_rate_higher_prio
         
         result = ((b_H + b_C + b_j - l_j + l_L) / (r - r_H)) + (l_j / r)
         if result > temp_highest_delay:
@@ -92,7 +92,7 @@ def compute_node_delay_for_stream(node: NetworkNode, stream_id:str) -> float:
     #4return the max of the computed delays 
     return temp_highest_delay
 
-def higher_total_burst(node: NetworkNode, stream_id:str) -> float:
+def higher_total_burst(node: NetworkNode, stream_id:str) -> int:
     """
     Compute the total burst for higher priority traffic.
     
@@ -102,7 +102,7 @@ def higher_total_burst(node: NetworkNode, stream_id:str) -> float:
     Returns:
         float: The total burst for higher priority traffic.
     """
-    total_burst = 0.0
+    total_burst :int = 0
     e_stream = node.extended_streams[stream_id]
     out_port = e_stream.out_port
     stream_priority: int = e_stream.stream.priority
@@ -114,7 +114,7 @@ def higher_total_burst(node: NetworkNode, stream_id:str) -> float:
 
     return total_burst
 
-def same_prio_total_burst(node: NetworkNode, stream_id:str) -> float:
+def same_prio_total_burst(node: NetworkNode, stream_id:str) -> int:
     """
     Compute the total burst for same priority traffic.
     
@@ -124,7 +124,7 @@ def same_prio_total_burst(node: NetworkNode, stream_id:str) -> float:
     Returns:
         float: The total burst for same priority traffic.
     """
-    total_burst:int = 0.0
+    total_burst:int = 0
     e_stream:ExtendedStream = node.extended_streams[stream_id]
     out_port:int = e_stream.out_port
     stream_priority: int = e_stream.stream.priority
@@ -138,7 +138,7 @@ def same_prio_total_burst(node: NetworkNode, stream_id:str) -> float:
     return total_burst
 
 
-def hiigher_total_reserver_rate_higher_prio(node: NetworkNode, stream_id:str) -> float:
+def hiigher_total_reserver_rate_higher_prio(node: NetworkNode, stream_id:str) -> int:
     """
     Compute the total reserved rate for higher priority traffic.
     questa computation anche si potrebbe ottimizzare salvando il risultato e riutilizzandolo ogni volta 
@@ -162,7 +162,7 @@ def hiigher_total_reserver_rate_higher_prio(node: NetworkNode, stream_id:str) ->
     return total_reserver_rate
 
 
-def bigger_frame_lower_priority(node: NetworkNode, stream_id:str) -> float:
+def bigger_frame_lower_priority(node: NetworkNode, stream_id:str) -> int:
     """
     finds the maximum frame size for lower priority traffic.
     cehck assumptions.md 

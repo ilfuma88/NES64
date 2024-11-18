@@ -14,7 +14,7 @@ class NetworkStream:
         self.burst_size = size
         self.period = period
         self.deadline = deadline
-        self.committed_rate = size/period 
+        self.committed_rate:float = size/period 
         self.priority = priority#priority is a number from 0 to 7 and we suppose that 0 is the highest priority
         
         
