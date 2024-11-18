@@ -14,7 +14,7 @@ class NetworkStream:
         self.burst_size = size
         self.period = period
         self.deadline = deadline
-        self.rate = size/period 
+        self.committed_rate = size/period 
         self.priority = priority#priority is a number from 0 to 7 and we suppose that 0 is the highest priority
         
         
@@ -22,6 +22,6 @@ class NetworkStream:
         return "Stream ID: " + self.stream_id + ", Type: " + self.stream_type + ", Source: " \
             + self.src_node + ", Destination: " + self.dest_node + ", Size: " + str(self.burst_size) + \
             ", Period: " + str(self.period) + ", Deadline: " + str(self.deadline) + \
-            ", Rate: " + str(self.rate) + ", Priority: " + str(self.priority)
+            ", Rate: " + str(self.committed_rate) + ", Priority: " + str(self.priority)
             
             

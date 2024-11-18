@@ -42,9 +42,11 @@ class NetworkNode:
         self.extended_streams:Dict[str,ExtendedStream] = {}
         self.n_ports = n_ports
         self.port_names = port_names
-        self.queues_map:Dict[str:List[List[List[ExtendedStream]]]]= {}        
+        self.queues_map:Dict[str,List[List[List[ExtendedStream]]]]= {}        
+        self.queues_delay_map:Dict[str,List[List[float]]]= {}#structure used to save the highest delayper shaped queue        
         for port_name in port_names:
             self.queues_map[port_name] = [[[] for _ in range(n_ports)] for _ in range(8)]
+            self.queues_delay_map[port_name] = [[None for _ in range(n_ports)] for _ in range(8)]
         self.is_active = False #for prints (true if it contains streams) 
         # print(self.queue_map)
         

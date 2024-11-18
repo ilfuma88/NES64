@@ -67,10 +67,10 @@ for edge in edges:
 
 
 
-# # # kinda test lines Step 5: Visualize the graph
-# pos = nx.spring_layout(G,)  # Increase k to make nodes more distant
-# nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=10, font_weight='bold')
-# # plt.show(block=True)
+# # kinda test lines Step 5: Visualize the graph
+pos = nx.spring_layout(G,)  # Increase k to make nodes more distant
+nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=10, font_weight='bold')
+plt.show(block=True)
 # plt.pause(4)  # Small pause to allow the window to appear
 # plt.show(block=False)
 
@@ -89,7 +89,8 @@ for node in network_nodeS.items():
     # print(node[1].extended_streams)
     # for streams_id, e_stream in node[1].extended_streams: #node is a tuple (name, NetworkNode) this loop iterates over all the streams in the node
     #     assign_stream_to_queue_map(node[1],e_stream) 
-    #     node[1].is_active = True
+    #     node[1].is_actcl
+    # ive = True
     for streams_id, e_stream in node[1].extended_streams.items():  # node is a tuple (node_id, NetworkNode) node[1]=NetworkNode
         assign_stream_to_queue_map(node[1], e_stream)
         node[1].is_active = True
@@ -98,9 +99,9 @@ for node in network_nodeS.items():
 for node in network_nodeS.items():
     node[1].print_queues_map("all")
         
-# #computing all of the WCD delays
-# delays_results = wcd_delay_for_network(network_nodeS, streams_paths)
+# computing all of the WCD delays
+delays_results = wcd_delay_for_network(network_nodeS, streams_paths)
 
-# # Print the delays results for every stream
-# for stream_id, delay in delays_results.items():
-#     print(f"Stream {stream_id}: Delay {delay}")
+# Print the delays results for every stream
+for stream_id, delay in delays_results.items():
+    print(f"Stream {stream_id}: Delay {delay}")

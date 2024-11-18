@@ -64,20 +64,30 @@ def map_node_to_port_names(csv_file_path: str) -> Dict[str, List[str]]:
                     
                     
 def assign_stream_to_queue_map(node: NetworkNode, ext_stream: ExtendedStream):
-    #the node is the final destination for the stream
-    if ext_stream.out_port is None:
+    """assign a steram to a specific shaped queue in the node 
+
+    Args:
+        node (NetworkNode): _description_
+        ext_stream (ExtendedStream): _description_
+    """
+    if ext_stream.out_port is None:    #the node is the final destination for the stream
         return
-        
+    
+    if ext_stream not in node.extended_streams.values():
+        raise ValueError(f"Stream {ext_stream.stream.stream_id} is not in the extended streams list of node {node.name}")
+    
     queues_matrix = node.queues_map[str(ext_stream.out_port)]
     assigned = False
-    for q in queues_matrix[ext_stream.stream.priority]:
+    for idx, q in enumerate(queues_matrix[ext_stream.stream.priority]):
         if not q:  # Queue is empty
+            ext_stream.shaped_queue_index = idx
             q.append(ext_stream)
             assigned = True
             break
         else:
             for ext_str in q:
                 if ext_str.prev_node == ext_stream.prev_node:
+                    ext_stream.shaped_queue_index = idx
                     q.append(ext_stream)
                     assigned = True
                     break
