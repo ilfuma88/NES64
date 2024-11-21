@@ -9,10 +9,10 @@ from wcd_computations import wcd_delay_for_network
 
 # streams_file = 'csvs/streams.csv'
 # topology_file = 'csvs/topology.csv'
-# streams_file = 'csvs/HM_smaller_streams.csv'
-# topology_file = 'csvs/HM_smaller_topology.csv'
-topology_file = 'csvs/small-topology.csv'
-streams_file = 'csvs/small-streams.csv'
+streams_file = 'csvs/HM_smaller_streams.csv'
+topology_file = 'csvs/HM_smaller_topology.csv'
+# topology_file = 'csvs/small-topology.csv'
+# streams_file = 'csvs/small-streams.csv'
 nodes = set()
 edges = []
 links:Dict[str, List[str]] = {}

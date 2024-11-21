@@ -45,7 +45,6 @@ def compute_node_delay_for_stream(node: NetworkNode, stream_id:str) -> float:
     Returns:
         float: The delay for the node.
     """
-    total_delay:float =0.0
     b_H_total_higher_priority_burst:float =0.0
     b_C_total_burst_same_prio:float =0.0
     b_j_frame_burst:float =0.0
@@ -71,9 +70,9 @@ def compute_node_delay_for_stream(node: NetworkNode, stream_id:str) -> float:
         b_C_total_burst_same_prio = same_prio_total_burst(node, ext_stream.stream.stream_id)
         b_j_frame_burst = ext_stream.stream.burst_size
         l_j_frame_minimum_length = ext_stream.stream.burst_size
-        r_link_rate = 1 #1GBit per sec
+        r_link_rate = 1000/8 #1GBit per microsec
         r_H_total_reserver_rate_higher_prio = hiigher_total_reserver_rate_higher_prio(node, ext_stream.stream.stream_id)
-        l_L_max_frame_of_lower_prio = bigger_frame_lower_priority(node, ext_stream.stream.stream_id)
+        l_L_max_frame_of_lower_prio = biggest_frame_lower_priority(node, ext_stream.stream.stream_id)
         #making names shorte to make the formula more readable
         b_H :int= b_H_total_higher_priority_burst
         b_C :int= b_C_total_burst_same_prio
@@ -157,12 +156,12 @@ def hiigher_total_reserver_rate_higher_prio(node: NetworkNode, stream_id:str) ->
     for priority_queue in range(stream_priority):
         for s_queue in node.queues_map[out_port][priority_queue]:
             for stream in s_queue:
-                total_reserver_rate += stream.stream.committed_rate
+                total_reserver_rate += (stream.stream.committed_rate) #should be bytes per microseconds
 
     return total_reserver_rate
 
 
-def bigger_frame_lower_priority(node: NetworkNode, stream_id:str) -> int:
+def biggest_frame_lower_priority(node: NetworkNode, stream_id:str) -> int:
     """
     finds the maximum frame size for lower priority traffic.
     cehck assumptions.md 
