@@ -1,2 +1,4 @@
-6,Stream_5,ats,ES_1,ES_3,1434,1000,2142
-6,Stream_6,ats,ES_3,ES_1,1434,1000,2142
+2,Isochronous,ats,node_0_0,node_1_0,86,100,2142
+0,Video_Audio_Voice,ats,node_0_0,node_2_0,1239,1000.2,2142
+2,Isochronous2,ats,node_0_1,node_2_0,86,997,2142
+1,Cyclic,ats,node_0_1,node_1_0,944,39995,2142

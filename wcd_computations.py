@@ -106,7 +106,7 @@ def higher_total_burst(node: NetworkNode, stream_id:str) -> int:
     out_port = e_stream.out_port
     stream_priority: int = e_stream.stream.priority
 
-    for priority_queue in range(stream_priority):
+    for priority_queue in range(stream_priority,8):
         for s_queue in node.queues_map[out_port][priority_queue]:
             for stream in s_queue:
                 total_burst += stream.stream.burst_size
@@ -153,7 +153,7 @@ def hiigher_total_reserver_rate_higher_prio(node: NetworkNode, stream_id:str) ->
     out_port:int = e_stream.out_port
     stream_priority: int = e_stream.stream.priority
 
-    for priority_queue in range(stream_priority):
+    for priority_queue in range(stream_priority, 8):
         for s_queue in node.queues_map[out_port][priority_queue]:
             for stream in s_queue:
                 total_reserver_rate += (stream.stream.committed_rate) #should be bytes per microseconds
@@ -177,7 +177,7 @@ def biggest_frame_lower_priority(node: NetworkNode, stream_id:str) -> int:
     out_port:int = e_stream.out_port
     stream_priority: int = e_stream.stream.priority
 
-    for priority_queue in range(stream_priority, 8):
+    for priority_queue in range(stream_priority):
         for s_queue in node.queues_map[out_port][priority_queue]:
             for ext_stream in s_queue:
                 if ext_stream.stream.burst_size > max_frame_size:

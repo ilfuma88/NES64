@@ -2,7 +2,7 @@
 when I compute the per hop delay for for a stream. I can store it casue it will be the same for all the other streams in the shaped queue.
 
 2:
-0 is the highest priority 7 the lowest
+7 is the highest priority 0 the lowest
 
 3:
 assuming the minimum frame length and maximum burst size are the same.

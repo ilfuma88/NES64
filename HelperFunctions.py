@@ -171,7 +171,7 @@ def process_streams_paths_and_append_in_nodes(streams_file: str, network_nodeS: 
                     source,
                     dest,
                     int(row[5]),
-                    int(row[6]),
+                    float(row[6]),
                     int(row[7]),
                     int(row[0])
                 )
