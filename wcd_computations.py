@@ -180,8 +180,9 @@ def biggest_frame_lower_priority(node: NetworkNode, stream_id:str) -> float:
     max_frame_size:float = 0
     e_stream:ExtendedStream = node.extended_streams[stream_id]
     out_port:float = e_stream.out_port
-    stream_priority: float = e_stream.stream.priority -1 
-    for priority_queue in range(stream_priority,-1,-1):
+    stream_priority: float = e_stream.stream.priority
+    
+    for priority_queue in range(stream_priority):
         print("priority_queue: "+str(priority_queue))
         for s_queue in node.queues_map[out_port][priority_queue]:
             for ext_stream in s_queue:
