@@ -1,14 +1,21 @@
+import sys
 import csv
 from typing import Dict, List
 import networkx as nx
 import matplotlib.pyplot as plt
+import time
 
 from network_node import NetworkNode
 from HelperFunctions import map_node_to_port_names, assign_stream_to_queue_map, process_streams_paths_and_append_in_nodes
 from wcd_computations import wcd_delay_for_network
 
-streams_file = 'csvs/streams.csv'
-topology_file = 'csvs/topology.csv'
+start_time = time.time()
+
+streams_file = sys.argv[1]
+topology_file = sys.argv[2]
+output_file = sys.argv[3]
+# streams_file = 'csvs/streams.csv'
+# topology_file = 'csvs/topology.csv'
 # streams_file = 'csvs/HM_smaller_streams.csv'
 # topology_file = 'csvs/HM_smaller_topology.csv'
 # topology_file = 'csvs/small-topology.csv'
@@ -70,7 +77,7 @@ for edge in edges:
 # # kinda test lines Step 5: Visualize the graph
 pos = nx.spring_layout(G,)  # Increase k to make nodes more distant
 nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', font_size=10, font_weight='bold')
-plt.show(block=True)
+#plt.show(block=True)
 # plt.pause(4)  # Small pause to allow the window to appear
 # plt.show(block=False)
 
@@ -96,12 +103,22 @@ for node in network_nodeS.items():
         node[1].is_active = True
     
 #test line to see all te shaped queues in all the nodes
-for node in network_nodeS.items():
-    node[1].print_queues_map("all")
+# for node in network_nodeS.items():
+#     node[1].print_queues_map("all")
         
 # computing all of the WCD delays
 delays_results = wcd_delay_for_network(network_nodeS, streams_paths)
 
-# Print the delays results for every stream
-for stream_id, delay in delays_results.items():
-    print(f"Stream {stream_id}: Delay {delay}")
+end_time = time.time()
+execution_time = end_time - start_time
+
+# Output the delays results for every stream
+with open(output_file, "w") as outfile:
+    for stream_id, delay in delays_results.items():
+        outfile.write(f"{stream_id}: Delay {delay}\n")
+    average = 0
+    for stream_id, delay in delays_results.items():
+        average = average + delay
+    average = average / len(delays_results.items())
+    outfile.write(f"Average E2E Delay {average}\n")
+    outfile.write(f"Execution time: {execution_time} seconds")
