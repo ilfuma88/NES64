@@ -134,6 +134,6 @@ with open(output_file, "w", newline='') as outfile:
     average = average / len(delays_results.items())
     
 
-with open(f"other_{output_file[:-4]}", mode='w') as file:
+with open(f"{output_file[:-4]}_other.txt", mode='w') as file:
     file.write(f"Average E2E Delay {average}\n")
     file.write(f"Execution time: {execution_time} seconds")

@@ -1,0 +1,9 @@
+Stream ID,MaxE2EDelay,Path,Deadline
+Stream_1,19.883781313323833,ES_1 -> Switch_1 -> Switch_4 -> ES_4,16096.0
+Stream_2,31.088,ES_1 -> Switch_1 -> Switch_3 -> ES_3,18595.0
+Stream_3,25.029914670628628,ES_2 -> Switch_2 -> Switch_1 -> ES_1,11812.0
+Stream_4,35.2,ES_2 -> Switch_2 -> Switch_3 -> ES_3,5847.0
+Stream_5,54.11676488091653,ES_3 -> Switch_3 -> Switch_2 -> ES_2,7044.0
+Stream_6,58.46763999312535,ES_3 -> Switch_3 -> Switch_2 -> ES_2,18723.0
+Stream_7,51.80192757174454,ES_4 -> Switch_4 -> Switch_2 -> ES_2,3395.0
+Stream_8,39.519999999999996,ES_4 -> Switch_4 -> Switch_2 -> ES_2,2550.0

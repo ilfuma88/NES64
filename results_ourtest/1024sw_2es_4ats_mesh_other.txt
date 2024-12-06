@@ -1,0 +1,2 @@
+Average E2E Delay 6199.068286816632
+Execution time: 28.396228075027466 seconds

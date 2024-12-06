@@ -1,0 +1,201 @@
+Stream ID,MaxE2EDelay,Path,Deadline
+Stream_1,210.2267755584129,ES_1 -> Switch_1 -> Switch_9 -> Switch_10 -> Switch_18 -> Switch_26 -> ES_52,14110.0
+Stream_2,411.261476640494,ES_1 -> Switch_1 -> Switch_2 -> Switch_3 -> Switch_4 -> Switch_5 -> Switch_6 -> Switch_7 -> Switch_15 -> Switch_23 -> ES_45,1648.0
+Stream_3,143.232,ES_2 -> Switch_1 -> Switch_9 -> Switch_17 -> Switch_25 -> Switch_26 -> Switch_27 -> Switch_28 -> Switch_29 -> ES_57,15754.0
+Stream_4,195.38547697931682,ES_2 -> Switch_1 -> Switch_9 -> Switch_17 -> Switch_25 -> Switch_33 -> Switch_34 -> Switch_42 -> ES_83,11280.0
+Stream_5,405.5256096522654,ES_3 -> Switch_2 -> Switch_3 -> Switch_4 -> Switch_5 -> Switch_6 -> Switch_7 -> Switch_8 -> Switch_16 -> Switch_24 -> Switch_32 -> Switch_40 -> ES_80,10119.0
+Stream_6,135.87199999999999,ES_3 -> Switch_2 -> Switch_3 -> Switch_4 -> Switch_5 -> Switch_13 -> ES_26,8520.0
+Stream_7,388.55773916942616,ES_4 -> Switch_2 -> Switch_10 -> Switch_18 -> Switch_19 -> Switch_20 -> Switch_21 -> Switch_22 -> Switch_23 -> Switch_24 -> ES_48,14052.0
+Stream_8,287.5911195358482,ES_4 -> Switch_2 -> Switch_10 -> Switch_18 -> Switch_26 -> Switch_34 -> Switch_42 -> Switch_43 -> Switch_44 -> Switch_45 -> ES_90,16818.0
+Stream_9,103.12714482159286,ES_5 -> Switch_3 -> Switch_2 -> Switch_10 -> ES_19,10300.0
+Stream_10,284.31982401550744,ES_5 -> Switch_3 -> Switch_2 -> Switch_10 -> Switch_18 -> Switch_26 -> Switch_34 -> Switch_42 -> ES_84,1832.0
+Stream_11,130.95102140852808,ES_6 -> Switch_3 -> Switch_2 -> Switch_10 -> Switch_18 -> Switch_26 -> Switch_34 -> Switch_42 -> ES_84,7652.0
+Stream_12,379.05594976318,ES_6 -> Switch_3 -> Switch_11 -> Switch_12 -> Switch_13 -> Switch_14 -> Switch_15 -> Switch_16 -> ES_31,8877.0
+Stream_13,237.82429666254848,ES_7 -> Switch_4 -> Switch_12 -> Switch_20 -> Switch_28 -> Switch_29 -> Switch_30 -> ES_59,5548.0
+Stream_14,404.51107962868656,ES_7 -> Switch_4 -> Switch_3 -> Switch_2 -> Switch_10 -> Switch_18 -> Switch_26 -> Switch_34 -> Switch_42 -> ES_83,3035.0
+Stream_15,367.04927491279176,ES_8 -> Switch_4 -> Switch_5 -> Switch_6 -> Switch_7 -> Switch_8 -> Switch_16 -> Switch_24 -> Switch_32 -> ES_63,1499.0
+Stream_16,153.85679525964582,ES_8 -> Switch_4 -> Switch_3 -> Switch_2 -> Switch_10 -> ES_19,8876.0
+Stream_17,165.56638430086477,ES_9 -> Switch_5 -> Switch_13 -> Switch_14 -> Switch_15 -> ES_30,6994.0
+Stream_18,172.4844949455909,ES_9 -> Switch_5 -> Switch_4 -> Switch_12 -> Switch_20 -> Switch_28 -> Switch_36 -> ES_72,3784.0
+Stream_19,287.37126980559054,ES_10 -> Switch_5 -> Switch_4 -> Switch_3 -> Switch_11 -> Switch_19 -> Switch_27 -> Switch_35 -> ES_69,7637.0
+Stream_20,209.50615256419306,ES_10 -> Switch_5 -> Switch_6 -> Switch_7 -> Switch_8 -> Switch_16 -> Switch_24 -> Switch_32 -> Switch_40 -> Switch_48 -> ES_95,3558.0
+Stream_21,243.69347956850515,ES_11 -> Switch_6 -> Switch_14 -> Switch_22 -> Switch_30 -> Switch_31 -> Switch_32 -> ES_63,7660.0
+Stream_22,176.13206345170352,ES_11 -> Switch_6 -> Switch_14 -> Switch_22 -> Switch_30 -> Switch_38 -> Switch_46 -> ES_91,6222.0
+Stream_23,116.73114054927304,ES_12 -> Switch_6 -> Switch_14 -> Switch_22 -> Switch_30 -> Switch_31 -> Switch_32 -> Switch_40 -> Switch_48 -> ES_95,6074.0
+Stream_24,39.61087170248359,ES_12 -> Switch_6 -> Switch_14 -> ES_28,8942.0
+Stream_25,183.79999999999998,ES_13 -> Switch_7 -> Switch_6 -> Switch_5 -> Switch_4 -> Switch_12 -> Switch_20 -> Switch_28 -> Switch_36 -> Switch_44 -> ES_88,1078.0
+Stream_26,217.888,ES_13 -> Switch_7 -> Switch_6 -> Switch_5 -> Switch_4 -> Switch_3 -> Switch_2 -> Switch_1 -> Switch_9 -> Switch_17 -> Switch_25 -> ES_49,17727.0
+Stream_27,423.02962782866757,ES_14 -> Switch_7 -> Switch_6 -> Switch_5 -> Switch_4 -> Switch_3 -> Switch_2 -> Switch_1 -> Switch_9 -> ES_17,6743.0
+Stream_28,365.52600682452004,ES_14 -> Switch_7 -> Switch_6 -> Switch_5 -> Switch_4 -> Switch_3 -> Switch_2 -> Switch_1 -> Switch_9 -> Switch_17 -> Switch_25 -> Switch_33 -> ES_65,2385.0
+Stream_29,133.04887309484835,ES_15 -> Switch_8 -> Switch_16 -> Switch_24 -> Switch_32 -> ES_63,13612.0
+Stream_30,572.9791602273843,ES_15 -> Switch_8 -> Switch_7 -> Switch_6 -> Switch_5 -> Switch_4 -> Switch_3 -> Switch_2 -> Switch_1 -> Switch_9 -> Switch_17 -> Switch_25 -> Switch_33 -> Switch_41 -> ES_82,13652.0
+Stream_31,302.20079574928775,ES_16 -> Switch_8 -> Switch_7 -> Switch_6 -> Switch_5 -> Switch_4 -> Switch_12 -> Switch_20 -> Switch_28 -> ES_55,3748.0
+Stream_32,227.75200000000004,ES_16 -> Switch_8 -> Switch_7 -> Switch_6 -> Switch_5 -> Switch_4 -> Switch_3 -> Switch_11 -> Switch_19 -> Switch_27 -> Switch_35 -> ES_70,4492.0
+Stream_33,310.70566778809837,ES_17 -> Switch_9 -> Switch_10 -> Switch_11 -> Switch_12 -> Switch_13 -> Switch_14 -> Switch_22 -> Switch_30 -> Switch_38 -> Switch_46 -> ES_91,7669.0
+Stream_34,91.1258503399869,ES_17 -> Switch_9 -> Switch_10 -> Switch_11 -> ES_21,6569.0
+Stream_35,204.46761475671158,ES_18 -> Switch_9 -> Switch_10 -> Switch_11 -> Switch_12 -> Switch_20 -> ES_40,7318.0
+Stream_36,128.69730978106423,ES_18 -> Switch_9 -> Switch_17 -> Switch_25 -> ES_49,17912.0
+Stream_37,164.6568227508026,ES_19 -> Switch_10 -> Switch_11 -> Switch_12 -> ES_24,19322.0
+Stream_38,166.7043790876133,ES_19 -> Switch_10 -> Switch_11 -> Switch_12 -> Switch_13 -> Switch_14 -> Switch_22 -> Switch_30 -> ES_60,1375.0
+Stream_39,421.88490626822056,ES_20 -> Switch_10 -> Switch_18 -> Switch_26 -> Switch_34 -> Switch_42 -> Switch_43 -> Switch_44 -> Switch_45 -> Switch_46 -> Switch_47 -> Switch_48 -> ES_95,12920.0
+Stream_40,140.64267445733526,ES_20 -> Switch_10 -> Switch_11 -> Switch_12 -> Switch_13 -> Switch_14 -> Switch_15 -> Switch_23 -> Switch_31 -> Switch_39 -> ES_78,10716.0
+Stream_41,173.8040442489861,ES_21 -> Switch_11 -> Switch_12 -> Switch_13 -> ES_26,8657.0
+Stream_42,172.59584362879536,ES_21 -> Switch_11 -> Switch_19 -> Switch_27 -> Switch_28 -> ES_56,7677.0
+Stream_43,79.30160611220934,ES_22 -> Switch_11 -> Switch_10 -> Switch_2 -> ES_3,4641.0
+Stream_44,119.58259689634573,ES_22 -> Switch_11 -> Switch_10 -> Switch_9 -> ES_18,5206.0
+Stream_45,75.65155036621366,ES_23 -> Switch_12 -> Switch_13 -> Switch_21 -> ES_41,15020.0
+Stream_46,78.62632612571099,ES_23 -> Switch_12 -> Switch_11 -> ES_21,15128.0
+Stream_47,340.7550333982434,ES_24 -> Switch_12 -> Switch_11 -> Switch_10 -> Switch_9 -> Switch_17 -> Switch_25 -> Switch_33 -> Switch_41 -> ES_82,17121.0
+Stream_48,177.7690670755814,ES_24 -> Switch_12 -> Switch_11 -> Switch_10 -> Switch_2 -> ES_4,16048.0
+Stream_49,360.23258516305816,ES_25 -> Switch_13 -> Switch_14 -> Switch_15 -> Switch_16 -> Switch_24 -> Switch_32 -> Switch_40 -> ES_80,19384.0
+Stream_50,168.2582026978462,ES_25 -> Switch_13 -> Switch_14 -> Switch_15 -> Switch_23 -> Switch_31 -> Switch_39 -> Switch_47 -> ES_93,12367.0
+Stream_51,125.02135762138607,ES_26 -> Switch_13 -> Switch_5 -> Switch_6 -> ES_11,7767.0
+Stream_52,166.89920362237223,ES_26 -> Switch_13 -> Switch_12 -> Switch_11 -> Switch_10 -> Switch_9 -> Switch_17 -> Switch_25 -> Switch_33 -> ES_66,9581.0
+Stream_53,244.20449398795108,ES_27 -> Switch_14 -> Switch_13 -> Switch_12 -> Switch_20 -> Switch_28 -> Switch_36 -> ES_72,3728.0
+Stream_54,138.3831504601842,ES_27 -> Switch_14 -> Switch_22 -> Switch_30 -> Switch_31 -> Switch_32 -> ES_63,6232.0
+Stream_55,219.75988971592278,ES_28 -> Switch_14 -> Switch_13 -> Switch_12 -> Switch_11 -> Switch_19 -> Switch_27 -> Switch_35 -> Switch_43 -> ES_85,2103.0
+Stream_56,188.68636710658473,ES_28 -> Switch_14 -> Switch_15 -> Switch_16 -> Switch_24 -> Switch_32 -> Switch_40 -> Switch_48 -> ES_96,2372.0
+Stream_57,91.37791270185382,ES_29 -> Switch_15 -> Switch_7 -> Switch_8 -> ES_16,2236.0
+Stream_58,196.37545692712342,ES_29 -> Switch_15 -> Switch_14 -> Switch_22 -> Switch_30 -> Switch_38 -> ES_76,17580.0
+Stream_59,254.24102166635998,ES_30 -> Switch_15 -> Switch_14 -> Switch_13 -> Switch_12 -> Switch_11 -> ES_22,15768.0
+Stream_60,284.86535821451633,ES_30 -> Switch_15 -> Switch_14 -> Switch_13 -> Switch_12 -> Switch_11 -> Switch_19 -> Switch_27 -> ES_54,11002.0
+Stream_61,65.4371275559473,ES_31 -> Switch_16 -> Switch_15 -> Switch_7 -> ES_13,19281.0
+Stream_62,364.3858896230053,ES_31 -> Switch_16 -> Switch_15 -> Switch_14 -> Switch_13 -> Switch_12 -> Switch_11 -> Switch_10 -> Switch_18 -> Switch_26 -> Switch_34 -> Switch_42 -> Switch_50 -> ES_99,4411.0
+Stream_63,477.4735993940844,ES_32 -> Switch_16 -> Switch_15 -> Switch_14 -> Switch_13 -> Switch_12 -> Switch_11 -> Switch_10 -> Switch_9 -> Switch_17 -> Switch_25 -> ES_50,5336.0
+Stream_64,46.94962436564553,ES_32 -> Switch_16 -> Switch_24 -> ES_48,1466.0
+Stream_65,46.736,ES_33 -> Switch_17 -> Switch_18 -> ES_35,5501.0
+Stream_66,153.74351396113053,ES_33 -> Switch_17 -> Switch_18 -> Switch_19 -> Switch_27 -> Switch_35 -> ES_69,3432.0
+Stream_67,161.33086806667535,ES_34 -> Switch_17 -> Switch_9 -> Switch_1 -> Switch_2 -> ES_4,17530.0
+Stream_68,513.2306284812286,ES_34 -> Switch_17 -> Switch_9 -> Switch_10 -> Switch_11 -> Switch_12 -> Switch_13 -> Switch_14 -> Switch_15 -> ES_30,12341.0
+Stream_69,45.376,ES_35 -> Switch_18 -> Switch_26 -> ES_52,16057.0
+Stream_70,369.34618642074844,ES_35 -> Switch_18 -> Switch_19 -> Switch_20 -> Switch_21 -> Switch_22 -> Switch_23 -> Switch_31 -> Switch_39 -> Switch_47 -> ES_93,18381.0
+Stream_71,209.83843301455283,ES_36 -> Switch_18 -> Switch_10 -> Switch_2 -> Switch_3 -> Switch_4 -> ES_7,9261.0
+Stream_72,437.65950430912056,ES_36 -> Switch_18 -> Switch_10 -> Switch_11 -> Switch_12 -> Switch_13 -> Switch_14 -> Switch_15 -> Switch_16 -> ES_32,14855.0
+Stream_73,164.13816561133692,ES_37 -> Switch_19 -> Switch_27 -> Switch_35 -> Switch_36 -> Switch_37 -> Switch_38 -> Switch_39 -> Switch_40 -> ES_80,18801.0
+Stream_74,129.31722734904994,ES_37 -> Switch_19 -> Switch_20 -> Switch_28 -> ES_56,11655.0
+Stream_75,211.36300404537215,ES_38 -> Switch_19 -> Switch_20 -> Switch_21 -> Switch_22 -> Switch_30 -> Switch_38 -> ES_75,18704.0
+Stream_76,90.74118372857126,ES_38 -> Switch_19 -> Switch_20 -> Switch_28 -> ES_55,1403.0
+Stream_77,67.67525610854646,ES_39 -> Switch_20 -> Switch_12 -> Switch_4 -> ES_8,1948.0
+Stream_78,89.392,ES_39 -> Switch_20 -> Switch_19 -> Switch_27 -> Switch_35 -> Switch_43 -> ES_85,18047.0
+Stream_79,122.608,ES_40 -> Switch_20 -> Switch_21 -> Switch_22 -> Switch_23 -> Switch_31 -> Switch_39 -> Switch_47 -> ES_94,8133.0
+Stream_80,97.80698670777934,ES_40 -> Switch_20 -> Switch_28 -> ES_56,10137.0
+Stream_81,177.6361735939413,ES_41 -> Switch_21 -> Switch_20 -> Switch_19 -> Switch_18 -> Switch_17 -> ES_33,10848.0
+Stream_82,171.14029952820547,ES_41 -> Switch_21 -> Switch_13 -> Switch_5 -> Switch_4 -> Switch_3 -> ES_5,8477.0
+Stream_83,110.87911234188206,ES_42 -> Switch_21 -> Switch_22 -> Switch_23 -> ES_46,14700.0
+Stream_84,215.25357764865606,ES_42 -> Switch_21 -> Switch_20 -> Switch_19 -> Switch_18 -> Switch_17 -> Switch_25 -> ES_49,11079.0
+Stream_85,295.4264423014172,ES_43 -> Switch_22 -> Switch_21 -> Switch_20 -> Switch_19 -> Switch_18 -> Switch_26 -> Switch_34 -> ES_68,9203.0
+Stream_86,178.39291786691882,ES_43 -> Switch_22 -> Switch_21 -> Switch_20 -> Switch_19 -> Switch_18 -> Switch_17 -> Switch_9 -> ES_18,9565.0
+Stream_87,34.57314612847256,ES_44 -> Switch_22 -> Switch_14 -> ES_28,1023.0
+Stream_88,36.432,ES_44 -> Switch_22 -> Switch_30 -> ES_59,17384.0
+Stream_89,62.23188483080929,ES_45 -> Switch_23 -> Switch_15 -> Switch_7 -> ES_14,8548.0
+Stream_90,71.0941201938952,ES_45 -> Switch_23 -> Switch_31 -> ES_62,2808.0
+Stream_91,45.696000000000005,ES_46 -> Switch_23 -> Switch_15 -> ES_30,1174.0
+Stream_92,218.16022597412058,ES_46 -> Switch_23 -> Switch_22 -> Switch_21 -> Switch_20 -> Switch_28 -> Switch_36 -> ES_71,12967.0
+Stream_93,172.5261523815759,ES_47 -> Switch_24 -> Switch_23 -> Switch_22 -> Switch_30 -> Switch_38 -> ES_76,7189.0
+Stream_94,313.3209411157878,ES_47 -> Switch_24 -> Switch_16 -> Switch_8 -> Switch_7 -> Switch_6 -> Switch_5 -> Switch_4 -> Switch_3 -> Switch_2 -> Switch_1 -> ES_2,12800.0
+Stream_95,51.24,ES_48 -> Switch_24 -> Switch_23 -> ES_45,6177.0
+Stream_96,203.64530532965574,ES_48 -> Switch_24 -> Switch_16 -> Switch_15 -> Switch_14 -> Switch_13 -> Switch_12 -> Switch_11 -> Switch_10 -> Switch_9 -> ES_18,17107.0
+Stream_97,481.33553681583555,ES_49 -> Switch_25 -> Switch_17 -> Switch_9 -> Switch_10 -> Switch_11 -> Switch_12 -> Switch_13 -> Switch_14 -> Switch_15 -> ES_29,4042.0
+Stream_98,332.17022556473216,ES_49 -> Switch_25 -> Switch_17 -> Switch_9 -> Switch_1 -> Switch_2 -> Switch_3 -> Switch_4 -> Switch_5 -> ES_9,14736.0
+Stream_99,41.25335453208395,ES_50 -> Switch_25 -> Switch_26 -> ES_52,7729.0
+Stream_100,263.09676140042905,ES_50 -> Switch_25 -> Switch_17 -> Switch_9 -> Switch_1 -> ES_2,7951.0
+Stream_101,173.41140756700077,ES_51 -> Switch_26 -> Switch_18 -> Switch_19 -> Switch_20 -> Switch_21 -> ES_42,13297.0
+Stream_102,228.04000000000002,ES_51 -> Switch_26 -> Switch_18 -> Switch_10 -> Switch_2 -> Switch_3 -> Switch_4 -> Switch_5 -> Switch_6 -> Switch_7 -> Switch_8 -> ES_16,6801.0
+Stream_103,154.3899702720812,ES_52 -> Switch_26 -> Switch_27 -> Switch_28 -> Switch_29 -> Switch_30 -> Switch_31 -> ES_62,5512.0
+Stream_104,65.16864023864606,ES_52 -> Switch_26 -> Switch_25 -> Switch_33 -> Switch_41 -> ES_81,4223.0
+Stream_105,181.50750960157413,ES_53 -> Switch_27 -> Switch_28 -> Switch_29 -> Switch_30 -> Switch_31 -> Switch_32 -> Switch_40 -> ES_79,10658.0
+Stream_106,152.32019015775893,ES_53 -> Switch_27 -> Switch_19 -> Switch_20 -> ES_40,7414.0
+Stream_107,111.67634846781974,ES_54 -> Switch_27 -> Switch_28 -> Switch_36 -> Switch_44 -> ES_87,8944.0
+Stream_108,187.9300632583226,ES_54 -> Switch_27 -> Switch_19 -> Switch_20 -> Switch_21 -> Switch_22 -> Switch_23 -> ES_45,1056.0
+Stream_109,238.74628279554358,ES_55 -> Switch_28 -> Switch_20 -> Switch_12 -> Switch_4 -> Switch_5 -> Switch_6 -> Switch_7 -> ES_14,18756.0
+Stream_110,185.38161740624807,ES_55 -> Switch_28 -> Switch_27 -> Switch_26 -> Switch_25 -> Switch_17 -> Switch_9 -> Switch_1 -> ES_1,16124.0
+Stream_111,177.76940481022447,ES_56 -> Switch_28 -> Switch_27 -> Switch_26 -> Switch_25 -> Switch_33 -> Switch_41 -> Switch_49 -> ES_98,17410.0
+Stream_112,223.72910591189907,ES_56 -> Switch_28 -> Switch_27 -> Switch_26 -> Switch_34 -> Switch_42 -> Switch_50 -> ES_99,9099.0
+Stream_113,187.26269280235556,ES_57 -> Switch_29 -> Switch_21 -> Switch_13 -> Switch_12 -> ES_23,18890.0
+Stream_114,137.87185430778896,ES_57 -> Switch_29 -> Switch_21 -> Switch_13 -> Switch_5 -> Switch_6 -> ES_12,7071.0
+Stream_115,142.73678057489334,ES_58 -> Switch_29 -> Switch_37 -> Switch_38 -> Switch_39 -> Switch_40 -> ES_80,11114.0
+Stream_116,221.84708242936338,ES_58 -> Switch_29 -> Switch_30 -> Switch_31 -> Switch_32 -> Switch_40 -> Switch_48 -> ES_95,10633.0
+Stream_117,66.72,ES_59 -> Switch_30 -> Switch_22 -> Switch_23 -> Switch_24 -> ES_48,4792.0
+Stream_118,87.632,ES_59 -> Switch_30 -> Switch_29 -> Switch_28 -> Switch_27 -> Switch_26 -> Switch_25 -> ES_50,9850.0
+Stream_119,108.62337039277818,ES_60 -> Switch_30 -> Switch_29 -> Switch_28 -> Switch_27 -> Switch_26 -> ES_51,2702.0
+Stream_120,35.879999999999995,ES_60 -> Switch_30 -> Switch_38 -> ES_76,10276.0
+Stream_121,161.624,ES_61 -> Switch_31 -> Switch_23 -> Switch_15 -> Switch_7 -> Switch_6 -> Switch_5 -> Switch_4 -> ES_8,5874.0
+Stream_122,190.93899848812023,ES_61 -> Switch_31 -> Switch_30 -> Switch_29 -> Switch_28 -> Switch_27 -> ES_54,11293.0
+Stream_123,80.0143136951556,ES_62 -> Switch_31 -> Switch_30 -> Switch_22 -> ES_43,9907.0
+Stream_124,52.77515794284085,ES_62 -> Switch_31 -> Switch_39 -> ES_77,13786.0
+Stream_125,250.6730991223441,ES_63 -> Switch_32 -> Switch_31 -> Switch_30 -> Switch_29 -> Switch_21 -> Switch_13 -> Switch_5 -> ES_10,10774.0
+Stream_126,53.716078660899484,ES_63 -> Switch_32 -> Switch_24 -> Switch_16 -> ES_31,2502.0
+Stream_127,87.80498839382649,ES_64 -> Switch_32 -> Switch_31 -> Switch_30 -> Switch_29 -> Switch_21 -> ES_42,1745.0
+Stream_128,307.42272095070575,ES_64 -> Switch_32 -> Switch_31 -> Switch_30 -> Switch_29 -> Switch_28 -> Switch_27 -> Switch_26 -> Switch_25 -> Switch_17 -> ES_33,17199.0
+Stream_129,52.58843522317416,ES_65 -> Switch_33 -> Switch_34 -> Switch_42 -> ES_84,12939.0
+Stream_130,135.648,ES_65 -> Switch_33 -> Switch_25 -> Switch_17 -> Switch_18 -> Switch_19 -> Switch_20 -> Switch_21 -> Switch_22 -> ES_44,18627.0
+Stream_131,201.13081695029666,ES_66 -> Switch_33 -> Switch_25 -> Switch_17 -> Switch_9 -> ES_17,15917.0
+Stream_132,157.37867046260763,ES_66 -> Switch_33 -> Switch_34 -> Switch_35 -> Switch_36 -> Switch_37 -> Switch_38 -> Switch_39 -> ES_78,19713.0
+Stream_133,105.99514648954485,ES_67 -> Switch_34 -> Switch_26 -> Switch_18 -> Switch_10 -> ES_20,19956.0
+Stream_134,161.544532519401,ES_67 -> Switch_34 -> Switch_26 -> Switch_27 -> Switch_28 -> Switch_29 -> ES_57,1776.0
+Stream_135,74.50711859647551,ES_68 -> Switch_34 -> Switch_35 -> Switch_43 -> ES_86,1036.0
+Stream_136,110.5671268654853,ES_68 -> Switch_34 -> Switch_26 -> Switch_18 -> Switch_10 -> ES_19,6556.0
+Stream_137,305.30079066869564,ES_69 -> Switch_35 -> Switch_27 -> Switch_19 -> Switch_11 -> Switch_12 -> Switch_13 -> Switch_14 -> Switch_15 -> ES_30,6176.0
+Stream_138,245.7158675693774,ES_69 -> Switch_35 -> Switch_27 -> Switch_28 -> Switch_29 -> Switch_30 -> Switch_31 -> ES_62,3590.0
+Stream_139,51.58892983238951,ES_70 -> Switch_35 -> Switch_36 -> ES_72,3589.0
+Stream_140,58.37648273692141,ES_70 -> Switch_35 -> Switch_43 -> ES_85,3947.0
+Stream_141,151.73691113929956,ES_71 -> Switch_36 -> Switch_37 -> Switch_38 -> Switch_39 -> Switch_40 -> ES_79,19438.0
+Stream_142,140.64,ES_71 -> Switch_36 -> Switch_28 -> Switch_27 -> Switch_19 -> Switch_11 -> Switch_3 -> ES_6,4289.0
+Stream_143,49.28,ES_72 -> Switch_36 -> Switch_35 -> ES_69,9721.0
+Stream_144,85.34400000000001,ES_72 -> Switch_36 -> Switch_28 -> Switch_20 -> Switch_12 -> Switch_4 -> ES_7,6244.0
+Stream_145,34.896,ES_73 -> Switch_37 -> Switch_45 -> ES_89,19673.0
+Stream_146,198.3140878216761,ES_73 -> Switch_37 -> Switch_36 -> Switch_35 -> Switch_34 -> Switch_26 -> ES_52,8912.0
+Stream_147,291.2498997264779,ES_74 -> Switch_37 -> Switch_29 -> Switch_21 -> Switch_13 -> Switch_12 -> Switch_11 -> Switch_3 -> ES_5,13798.0
+Stream_148,117.49599999999998,ES_74 -> Switch_37 -> Switch_29 -> Switch_21 -> Switch_13 -> Switch_12 -> Switch_11 -> Switch_10 -> Switch_9 -> ES_18,11894.0
+Stream_149,149.48600723502537,ES_75 -> Switch_38 -> Switch_30 -> Switch_22 -> Switch_21 -> Switch_20 -> Switch_19 -> ES_37,11009.0
+Stream_150,32.176,ES_75 -> Switch_38 -> Switch_39 -> ES_77,16304.0
+Stream_151,95.94010214637973,ES_76 -> Switch_38 -> Switch_30 -> Switch_31 -> ES_62,11438.0
+Stream_152,77.95519817147041,ES_76 -> Switch_38 -> Switch_30 -> Switch_22 -> Switch_14 -> ES_27,14190.0
+Stream_153,98.25530207044213,ES_77 -> Switch_39 -> Switch_31 -> Switch_23 -> Switch_22 -> ES_43,5090.0
+Stream_154,165.86679131358335,ES_77 -> Switch_39 -> Switch_38 -> Switch_37 -> Switch_36 -> Switch_28 -> ES_55,4182.0
+Stream_155,43.54075460117771,ES_78 -> Switch_39 -> Switch_40 -> ES_80,1805.0
+Stream_156,162.6975346904737,ES_78 -> Switch_39 -> Switch_38 -> Switch_37 -> Switch_36 -> Switch_35 -> Switch_34 -> ES_68,16043.0
+Stream_157,160.04457619612776,ES_79 -> Switch_40 -> Switch_32 -> Switch_24 -> Switch_16 -> Switch_15 -> Switch_7 -> ES_14,8978.0
+Stream_158,153.73483742284645,ES_79 -> Switch_40 -> Switch_39 -> Switch_38 -> Switch_37 -> Switch_45 -> ES_90,6025.0
+Stream_159,256.4610181227351,ES_80 -> Switch_40 -> Switch_32 -> Switch_24 -> Switch_16 -> Switch_8 -> Switch_7 -> Switch_6 -> Switch_5 -> ES_10,7636.0
+Stream_160,492.7085813603567,ES_80 -> Switch_40 -> Switch_39 -> Switch_38 -> Switch_37 -> Switch_36 -> Switch_35 -> Switch_34 -> Switch_33 -> Switch_25 -> Switch_17 -> Switch_9 -> Switch_1 -> ES_1,9399.0
+Stream_161,95.664,ES_81 -> Switch_41 -> Switch_42 -> Switch_43 -> Switch_44 -> Switch_45 -> ES_90,11779.0
+Stream_162,68.27041563411416,ES_81 -> Switch_41 -> Switch_42 -> Switch_43 -> ES_86,12318.0
+Stream_163,260.58845560755503,ES_82 -> Switch_41 -> Switch_33 -> Switch_25 -> Switch_17 -> Switch_9 -> Switch_10 -> Switch_11 -> Switch_12 -> Switch_13 -> ES_25,19296.0
+Stream_164,67.921866234713,ES_82 -> Switch_41 -> Switch_42 -> Switch_43 -> ES_85,17319.0
+Stream_165,53.184,ES_83 -> Switch_42 -> Switch_34 -> Switch_35 -> ES_70,5227.0
+Stream_166,107.41223822861407,ES_83 -> Switch_42 -> Switch_43 -> Switch_44 -> Switch_45 -> Switch_46 -> ES_92,2192.0
+Stream_167,43.088320681206575,ES_84 -> Switch_42 -> Switch_41 -> Switch_49 -> ES_97,15882.0
+Stream_168,203.3583496476321,ES_84 -> Switch_42 -> Switch_43 -> Switch_44 -> Switch_45 -> Switch_46 -> Switch_47 -> ES_93,10814.0
+Stream_169,361.64114970551566,ES_85 -> Switch_43 -> Switch_35 -> Switch_27 -> Switch_19 -> Switch_20 -> Switch_21 -> Switch_22 -> Switch_23 -> Switch_24 -> ES_48,18722.0
+Stream_170,211.66621985591263,ES_85 -> Switch_43 -> Switch_35 -> Switch_27 -> Switch_19 -> Switch_18 -> Switch_17 -> Switch_9 -> Switch_1 -> ES_2,2154.0
+Stream_171,62.98223558514148,ES_86 -> Switch_43 -> Switch_42 -> Switch_34 -> ES_67,3350.0
+Stream_172,92.37599999999999,ES_86 -> Switch_43 -> Switch_44 -> Switch_45 -> Switch_46 -> ES_92,16572.0
+Stream_173,191.78763095189532,ES_87 -> Switch_44 -> Switch_36 -> Switch_28 -> Switch_20 -> Switch_12 -> Switch_4 -> Switch_5 -> Switch_6 -> ES_11,16346.0
+Stream_174,218.94643344447041,ES_87 -> Switch_44 -> Switch_36 -> Switch_28 -> Switch_27 -> Switch_19 -> Switch_11 -> Switch_3 -> ES_6,4422.0
+Stream_175,26.744082012089883,ES_88 -> Switch_44 -> ES_87,8173.0
+Stream_176,212.4355685592306,ES_88 -> Switch_44 -> Switch_36 -> Switch_28 -> Switch_29 -> Switch_30 -> Switch_31 -> ES_61,14111.0
+Stream_177,70.168,ES_89 -> Switch_45 -> Switch_44 -> Switch_43 -> Switch_42 -> ES_84,6762.0
+Stream_178,98.82061361240764,ES_89 -> Switch_45 -> Switch_37 -> Switch_38 -> Switch_39 -> Switch_40 -> ES_79,8938.0
+Stream_179,484.3565270323847,ES_90 -> Switch_45 -> Switch_44 -> Switch_43 -> Switch_42 -> Switch_41 -> Switch_33 -> Switch_25 -> Switch_17 -> Switch_9 -> Switch_1 -> ES_1,5276.0
+Stream_180,255.662530431855,ES_90 -> Switch_45 -> Switch_37 -> Switch_29 -> Switch_21 -> Switch_13 -> Switch_14 -> Switch_15 -> Switch_16 -> ES_32,5013.0
+Stream_181,90.417343453953,ES_91 -> Switch_46 -> Switch_38 -> Switch_30 -> Switch_29 -> ES_58,8069.0
+Stream_182,312.3227952408484,ES_91 -> Switch_46 -> Switch_38 -> Switch_37 -> Switch_36 -> Switch_35 -> Switch_27 -> Switch_19 -> Switch_11 -> Switch_3 -> ES_5,9394.0
+Stream_183,94.93611968093207,ES_92 -> Switch_46 -> Switch_45 -> Switch_44 -> Switch_43 -> Switch_42 -> Switch_41 -> ES_81,15702.0
+Stream_184,167.9105468153843,ES_92 -> Switch_46 -> Switch_38 -> Switch_37 -> Switch_29 -> Switch_21 -> ES_42,19217.0
+Stream_185,158.75116775896225,ES_93 -> Switch_47 -> Switch_39 -> Switch_31 -> Switch_23 -> Switch_15 -> Switch_16 -> ES_32,10867.0
+Stream_186,197.25599999999997,ES_93 -> Switch_47 -> Switch_39 -> Switch_38 -> Switch_37 -> Switch_36 -> Switch_35 -> Switch_27 -> Switch_19 -> Switch_11 -> Switch_3 -> ES_6,4982.0
+Stream_187,52.904,ES_94 -> Switch_47 -> Switch_46 -> Switch_38 -> ES_75,17610.0
+Stream_188,166.0057249461089,ES_94 -> Switch_47 -> Switch_39 -> Switch_31 -> Switch_23 -> Switch_22 -> Switch_21 -> Switch_20 -> Switch_19 -> ES_37,14097.0
+Stream_189,266.1311383585887,ES_95 -> Switch_48 -> Switch_40 -> Switch_39 -> Switch_38 -> Switch_37 -> Switch_36 -> Switch_35 -> Switch_34 -> Switch_33 -> ES_66,11504.0
+Stream_190,139.48607100798864,ES_95 -> Switch_48 -> Switch_40 -> Switch_32 -> Switch_31 -> Switch_30 -> Switch_29 -> Switch_28 -> ES_56,5120.0
+Stream_191,506.369921443866,ES_96 -> Switch_48 -> Switch_47 -> Switch_46 -> Switch_45 -> Switch_44 -> Switch_43 -> Switch_42 -> Switch_41 -> Switch_33 -> Switch_25 -> Switch_17 -> Switch_9 -> Switch_1 -> ES_2,11106.0
+Stream_192,299.9866579716395,ES_96 -> Switch_48 -> Switch_40 -> Switch_32 -> Switch_24 -> Switch_16 -> Switch_8 -> Switch_7 -> Switch_6 -> Switch_5 -> ES_9,12213.0
+Stream_193,335.0364969369482,ES_97 -> Switch_49 -> Switch_41 -> Switch_33 -> Switch_25 -> Switch_17 -> Switch_9 -> Switch_1 -> Switch_2 -> Switch_3 -> ES_6,7659.0
+Stream_194,723.7580044133949,ES_97 -> Switch_49 -> Switch_41 -> Switch_33 -> Switch_25 -> Switch_17 -> Switch_9 -> Switch_1 -> Switch_2 -> Switch_3 -> Switch_4 -> Switch_5 -> Switch_6 -> ES_11,14238.0
+Stream_195,192.76243545088025,ES_98 -> Switch_49 -> Switch_41 -> Switch_42 -> Switch_43 -> Switch_44 -> Switch_45 -> ES_90,5514.0
+Stream_196,305.04053813508136,ES_98 -> Switch_49 -> Switch_41 -> Switch_33 -> Switch_25 -> Switch_17 -> Switch_9 -> Switch_1 -> Switch_2 -> Switch_3 -> Switch_4 -> Switch_5 -> Switch_6 -> ES_11,10720.0
+Stream_197,93.36055748933,ES_99 -> Switch_50 -> Switch_42 -> Switch_34 -> Switch_26 -> Switch_18 -> ES_35,3795.0
+Stream_198,124.17318541475585,ES_99 -> Switch_50 -> Switch_42 -> Switch_34 -> Switch_35 -> ES_69,8769.0
+Stream_199,238.70904671508066,ES_100 -> Switch_50 -> Switch_42 -> Switch_34 -> Switch_35 -> Switch_36 -> Switch_37 -> Switch_38 -> Switch_39 -> ES_78,15569.0
+Stream_200,228.22632874333098,ES_100 -> Switch_50 -> Switch_42 -> Switch_34 -> Switch_26 -> Switch_18 -> Switch_10 -> Switch_2 -> ES_3,16191.0

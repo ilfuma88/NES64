@@ -1,6 +1,8 @@
 # WCD Group 7
 
-## Command to run our program:
+This is the tool to be able to compute WCD using the formulas from the course. It also contains some of the CSVs and results used for our paper.
+
+## Command to run our program(Windows command):
 
 ```python .\GraphCreationAndTest.py streams.csv topology.csv outputfile```
 
