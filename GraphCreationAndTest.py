@@ -19,6 +19,7 @@ links:Dict[str, List[str]] = {}
 """stream_paths, dict, where the key is stream name and value is a list of nodes that the stream crosses. {Stream_n: [node_1, node_2, ...], Stream_x: [node_2, node_5, ...]}"""
 streams_paths:dict[str:list[str]] ={} 
 network_nodeS: Dict[str, NetworkNode] = {}
+stream_deadlines: Dict[str, float] = {}
 """nodes_to_out_ports_map[node_name] = list of nodes with associated out_ports to rich them from node_name"""
 nodes_to_out_ports_map :Dict[str,List[Dict[str,str]]]= {} 
 """key is the node name and value is a list of port numbers (used in case the node doesnt have sequential port numbers or other edge cases)"""
@@ -82,7 +83,10 @@ plt.show(block=True)
         
  
 streams_paths = process_streams_paths_and_append_in_nodes(streams_file, network_nodeS, G, links, nodes_to_out_ports_map)
-
+with open(streams_file, 'r') as csvfile:
+    csvreader = csv.reader(csvfile)
+    for row in csvreader:
+        stream_deadlines[row[1]] = float(row[7])
         
 ##assigning all the streams to the right shaped queues inside the nodes they cross
 for node in network_nodeS.items():
@@ -105,3 +109,13 @@ delays_results = wcd_delay_for_network(network_nodeS, streams_paths)
 # Print the delays results for every stream
 for stream_id, delay in delays_results.items():
     print(f"Stream {stream_id}: Delay {delay}")
+
+with open('solution.csv', mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Stream ID', 'MaxE2EDelay', 'Path','Deadline'])
+    
+    for path in streams_paths.items():
+        formatted_path = ' -> '.join(path[1])
+    
+    for stream_id, delay in delays_results.items():
+        writer.writerow([stream_id, delay, formatted_path,stream_deadlines[stream_id]])
