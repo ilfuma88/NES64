@@ -113,9 +113,10 @@ for stream_id, delay in delays_results.items():
 with open('solution.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['Stream ID', 'MaxE2EDelay', 'Path','Deadline'])
-    
-    for path in streams_paths.items():
-        formatted_path = ' -> '.join(path[1])
+    stream_paths_formated ={}
+    for stream_id,path in streams_paths.items():
+        stream_paths_formated[stream_id] = ' -> '.join(path)
+        print(path)
     
     for stream_id, delay in delays_results.items():
-        writer.writerow([stream_id, delay, formatted_path,stream_deadlines[stream_id]])
+        writer.writerow([stream_id, delay, stream_paths_formated[stream_id],stream_deadlines[stream_id]])
