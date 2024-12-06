@@ -1,13 +1,9 @@
-Coding conventions:
+# WCD Group 7
 
--write Doc Comments:
-    (I dont know what you wrote and in 3 days neither u are going to remember what you wrote )
+## Command to run our program:
 
--writing good comments its easy, if you dont know how to do it learn it. (Ai can read good coments and help you better)
-        (ex:
-            worse coment:  """...and updates the network nodes with the streams.""" updates how? wtf does this mean if you dont know the code?
-            better comment: """...and updates the network nodes with the streams that are routed through them.""")
+```python .\GraphCreationAndTest.py streams.csv topology.csv outputfile```
 
--dont over engineer. Better to write a simple thing twice than write a super complex super nested code (Chat is writing it not u so u can do it twice)
+## Test Commands
 
--make functions statically typed we are all bad at codiong this way its easier to avoid errors but most importantly to debug, because for sure we will have to debug!
+```python .\GraphCreationAndTest.py .\csvs\OtherGroup\128sw_2es_2ats_cyclic\streams.csv .\csvs\OtherGroup\128sw_2es_2ats_cyclic\topology.csv outputfile.txt```
