@@ -66,22 +66,27 @@ def compute_node_delay_for_stream(node: NetworkNode, stream_id:str) -> float:
     #1find all the nodes that share the same sahped_ as of stream_id
     for ext_stream in node.queues_map[out_port][stream_priority][shaped_queue_index]:
         #2compute the formula for all the streams that share the same shaped queue
+        print("Stream ID: " + ext_stream.stream.stream_id + "Node: " + node.name)
         b_H_total_higher_priority_burst = higher_total_burst(node, ext_stream.stream.stream_id)
+        print("b_h"+str(b_H_total_higher_priority_burst))
         b_C_total_burst_same_prio = same_prio_total_burst(node, ext_stream.stream.stream_id)
+        print("bc"+str(b_C_total_burst_same_prio))
         b_j_frame_burst = ext_stream.stream.burst_size
         l_j_frame_minimum_length = ext_stream.stream.burst_size
         r_link_rate = 1000/8 #1GBit per microsec
         r_H_total_reserver_rate_higher_prio = hiigher_total_reserver_rate_higher_prio(node, ext_stream.stream.stream_id)
+        print("rh"+str(r_H_total_reserver_rate_higher_prio))
         l_L_max_frame_of_lower_prio = biggest_frame_lower_priority(node, ext_stream.stream.stream_id)
+        print("il"+str(l_L_max_frame_of_lower_prio))
         #making names shorte to make the formula more readable
-        b_H :int= b_H_total_higher_priority_burst
-        b_C :int= b_C_total_burst_same_prio
-        b_j :int= b_j_frame_burst
-        l_j :int= l_j_frame_minimum_length
-        l_L :int= l_L_max_frame_of_lower_prio
-        r   :int= r_link_rate
-        r_H :int= r_H_total_reserver_rate_higher_prio
-        
+        b_H :float= b_H_total_higher_priority_burst
+        b_C :float= b_C_total_burst_same_prio
+        b_j :float= b_j_frame_burst
+        l_j :float= l_j_frame_minimum_length
+        l_L :float= l_L_max_frame_of_lower_prio
+        r   :float= r_link_rate
+        r_H :float= r_H_total_reserver_rate_higher_prio
+        print("b_H: "+str(b_H) + "+b_C: " + str(b_C) + "+l_L: " + str(l_L) + "/ (r: " + str(r) + "-r_H:" + str(r_H)+")"+"+l_j:"+str(l_j)+"/r:"+str(r))
         result = ((b_H + b_C + b_j - l_j + l_L) / (r - r_H)) + (l_j / r)
         if result > temp_highest_delay:
             temp_highest_delay = result
@@ -91,7 +96,7 @@ def compute_node_delay_for_stream(node: NetworkNode, stream_id:str) -> float:
     #4return the max of the computed delays 
     return temp_highest_delay
 
-def higher_total_burst(node: NetworkNode, stream_id:str) -> int:
+def higher_total_burst(node: NetworkNode, stream_id:str) -> float:
     """
     Compute the total burst for higher priority traffic.
     
@@ -101,10 +106,10 @@ def higher_total_burst(node: NetworkNode, stream_id:str) -> int:
     Returns:
         float: The total burst for higher priority traffic.
     """
-    total_burst :int = 0
+    total_burst :float = 0
     e_stream = node.extended_streams[stream_id]
     out_port = e_stream.out_port
-    stream_priority: int = e_stream.stream.priority
+    stream_priority: float = e_stream.stream.priority + 1
 
     for priority_queue in range(stream_priority,8):
         for s_queue in node.queues_map[out_port][priority_queue]:
@@ -113,7 +118,7 @@ def higher_total_burst(node: NetworkNode, stream_id:str) -> int:
 
     return total_burst
 
-def same_prio_total_burst(node: NetworkNode, stream_id:str) -> int:
+def same_prio_total_burst(node: NetworkNode, stream_id:str) -> float:
     """
     Compute the total burst for same priority traffic.
     
@@ -123,10 +128,10 @@ def same_prio_total_burst(node: NetworkNode, stream_id:str) -> int:
     Returns:
         float: The total burst for same priority traffic.
     """
-    total_burst:int = 0
+    total_burst:float = 0
     e_stream:ExtendedStream = node.extended_streams[stream_id]
-    out_port:int = e_stream.out_port
-    stream_priority: int = e_stream.stream.priority
+    out_port:float = e_stream.out_port
+    stream_priority: float = e_stream.stream.priority
 
     for s_queue in node.queues_map[out_port][stream_priority]:
         for ext_stream in s_queue:
@@ -137,7 +142,7 @@ def same_prio_total_burst(node: NetworkNode, stream_id:str) -> int:
     return total_burst
 
 
-def hiigher_total_reserver_rate_higher_prio(node: NetworkNode, stream_id:str) -> int:
+def hiigher_total_reserver_rate_higher_prio(node: NetworkNode, stream_id:str) -> float:
     """
     Compute the total reserved rate for higher priority traffic.
     questa computation anche si potrebbe ottimizzare salvando il risultato e riutilizzandolo ogni volta 
@@ -150,8 +155,8 @@ def hiigher_total_reserver_rate_higher_prio(node: NetworkNode, stream_id:str) ->
     """
     total_reserver_rate:float = 0.0
     e_stream:ExtendedStream = node.extended_streams[stream_id]
-    out_port:int = e_stream.out_port
-    stream_priority: int = e_stream.stream.priority
+    out_port:float = e_stream.out_port
+    stream_priority: float = e_stream.stream.priority + 1
 
     for priority_queue in range(stream_priority, 8):
         for s_queue in node.queues_map[out_port][priority_queue]:
@@ -161,7 +166,7 @@ def hiigher_total_reserver_rate_higher_prio(node: NetworkNode, stream_id:str) ->
     return total_reserver_rate
 
 
-def biggest_frame_lower_priority(node: NetworkNode, stream_id:str) -> int:
+def biggest_frame_lower_priority(node: NetworkNode, stream_id:str) -> float:
     """
     finds the maximum frame size for lower priority traffic.
     cehck assumptions.md 
@@ -172,12 +177,13 @@ def biggest_frame_lower_priority(node: NetworkNode, stream_id:str) -> int:
     Returns:
         float: The maximum frame size for lower priority traffic.
     """
-    max_frame_size:int = 0
+    max_frame_size:float = 0
     e_stream:ExtendedStream = node.extended_streams[stream_id]
-    out_port:int = e_stream.out_port
-    stream_priority: int = e_stream.stream.priority
-
+    out_port:float = e_stream.out_port
+    stream_priority: float = e_stream.stream.priority
+    
     for priority_queue in range(stream_priority):
+        print("priority_queue: "+str(priority_queue))
         for s_queue in node.queues_map[out_port][priority_queue]:
             for ext_stream in s_queue:
                 if ext_stream.stream.burst_size > max_frame_size:
