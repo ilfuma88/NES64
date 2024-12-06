@@ -117,23 +117,23 @@ end_time = time.time()
 execution_time = end_time - start_time
 
 # Output the delays results for every stream
-with open(output_file, "w") as outfile:
-    for stream_id, delay in delays_results.items():
-        outfile.write(f"{stream_id}: Delay {delay}\n")
-    average = 0
-    for stream_id, delay in delays_results.items():
-        average = average + delay
-    average = average / len(delays_results.items())
-    outfile.write(f"Average E2E Delay {average}\n")
-    outfile.write(f"Execution time: {execution_time} seconds")
-
-with open('solution.csv', mode='w', newline='') as file:
-    writer = csv.writer(file)
+with open(output_file, "w", newline='') as outfile:
+    writer = csv.writer(outfile)
     writer.writerow(['Stream ID', 'MaxE2EDelay', 'Path','Deadline'])
     stream_paths_formated ={}
     for stream_id,path in streams_paths.items():
         stream_paths_formated[stream_id] = ' -> '.join(path)
-        print(path)
+        # print(path)
     
     for stream_id, delay in delays_results.items():
         writer.writerow([stream_id, delay, stream_paths_formated[stream_id],stream_deadlines[stream_id]])
+    
+    average = 0
+    for stream_id, delay in delays_results.items():
+        average = average + delay
+    average = average / len(delays_results.items())
+    
+
+with open(f"other_{output_file[:-4]}", mode='w') as file:
+    file.write(f"Average E2E Delay {average}\n")
+    file.write(f"Execution time: {execution_time} seconds")
