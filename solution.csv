@@ -1,0 +1,5 @@
+Stream ID,MaxE2EDelay,Path,Deadline
+Isochronous,27.080000000000005,node_0_0 -> sw_0 -> sw_1 -> node_1_0,2142.0
+Video_Audio_Voice,31.805716423983156,node_0_0 -> sw_0 -> sw_2 -> node_2_0,2142.0
+Isochronous2,29.440000000000005,node_0_1 -> sw_0 -> sw_2 -> node_2_0,2142.0
+Cyclic,24.730007559502447,node_0_1 -> sw_0 -> sw_1 -> node_1_0,2142.0
